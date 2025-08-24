@@ -5,10 +5,11 @@
 #include "CoreMinimal.h"
 #include "Character/RHCharacterBase.h"
 #include "InputActionValue.h"
+#include "Interface/RHCharacterDataInterface.h"
 #include "RHPlayerCharacter.generated.h"
 
 UCLASS(Abstract)
-class RHYTHMHAVEN_API ARHPlayerCharacter : public ARHCharacterBase
+class RHYTHMHAVEN_API ARHPlayerCharacter : public ARHCharacterBase, public IRHCharacterActionInterface, public IRHCharacterDataInterface
 {
 	GENERATED_BODY()
 
@@ -54,6 +55,20 @@ private:
 
 	void HandleSprintStart(const FInputActionValue& Value);
 	void HandleSprintStop(const FInputActionValue& Value);
+	
+	/*Foot Step*/
+	void UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	TObjectPtr<USoundBase> LeftFootSound;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Sound")
+	TObjectPtr<USoundBase> RightFootSound;
+	
+	bool bLeftFootStepPlayed;
+	bool bRightFootStepPlayed;
+	float LeftFootDistanceToGround;
+	float RightFootDistanceToGround;
 
 private:
 	virtual bool ChangeMovementType_Implementation(EMovementType MovementType, float MaxWalkSpeed) override;

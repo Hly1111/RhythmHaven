@@ -6,6 +6,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "Kismet/GameplayStatics.h"
 #include "Interface/RHCharacterDataInterface.h"
 
 ARHPlayerCharacter::ARHPlayerCharacter()
@@ -46,6 +47,9 @@ void ARHPlayerCharacter::BeginPlay()
 void ARHPlayerCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	UpdateFootStep(FName("l_foot_sound"), LeftFootSound, bLeftFootStepPlayed, LeftFootDistanceToGround);
+	UpdateFootStep(FName("r_foot_sound"), RightFootSound, bRightFootStepPlayed, RightFootDistanceToGround);
 }
 
 void ARHPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -121,13 +125,61 @@ void ARHPlayerCharacter::HandleSprintStop(const FInputActionValue& Value)
 	}
 }
 
+#if WITH_EDITOR
+#define RH_DRAW_FOOT_LINE(World, Start, End, bHit, Duration)\
+DrawDebugLine((World), (Start), (End), (bHit) ? FColor::Red : FColor::Green, false, (Duration), 0, 0.15f);
+#else
+#define RH_DRAW_FOOT_LINE(World, Start, End, bHit, Duration)
+#endif
+
+void ARHPlayerCharacter::UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const
+{
+	const FVector Start = GetMesh()->GetSocketLocation(SocketName);
+	const FVector End = Start + (-1000.f) * GetActorUpVector();
+
+	FHitResult OutHit;
+	const bool bHit = GetWorld()->LineTraceSingleByChannel(OutHit, Start, End, ECC_WorldStatic);
+
+	RH_DRAW_FOOT_LINE(GetWorld(), Start, End, bHit, 0.1f);
+
+	if (bHit)
+	{
+		DistanceToGround = OutHit.Distance;
+
+		if (SocketName == TEXT("l_foot_sound"))
+		{
+			IRHCharacterDataInterface::Execute_ReceiveLeftFootDistanceToGround(GetMesh()->GetAnimInstance(), DistanceToGround);
+		}
+		else
+		{
+			IRHCharacterDataInterface::Execute_ReceiveRightFootDistanceToGround(GetMesh()->GetAnimInstance(), DistanceToGround);
+		}
+		
+		if (DistanceToGround < 2.f)
+		{
+			if (!bIsStepPlayed)
+			{
+				if (FootSound)
+				{
+					UGameplayStatics::PlaySoundAtLocation(this, FootSound, OutHit.Location);
+				}
+				bIsStepPlayed = true;
+			}
+		}
+		else if (DistanceToGround > 10.f)
+		{
+			bIsStepPlayed = false;
+		}
+	}
+}
+
 bool ARHPlayerCharacter::ChangeMovementType_Implementation(EMovementType MovementType, float MaxWalkSpeed)
 {
 	if (UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance())
 	{
 		if (AnimInstance ->GetClass()->ImplementsInterface(URHCharacterDataInterface::StaticClass()))
 		{
-			IRHCharacterDataInterface::Execute_ReceiveMovementType(AnimInstance, MovementType);
+			Execute_ReceiveMovementType(AnimInstance, MovementType);
 			GetCharacterMovement()->MaxWalkSpeed = MaxWalkSpeed;
 			return true;
 		}

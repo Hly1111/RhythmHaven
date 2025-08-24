@@ -30,5 +30,5 @@ public:
 	bool ReceiveLeftFootDistanceToGround(float Distance);
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
-	bool ReceiveLRightFootDistanceToGround(float Distance);
+	bool ReceiveRightFootDistanceToGround(float Distance);
 };

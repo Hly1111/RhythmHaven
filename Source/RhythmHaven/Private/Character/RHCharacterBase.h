@@ -8,7 +8,7 @@
 #include "RHCharacterBase.generated.h"
 
 UCLASS(Abstract)
-class RHYTHMHAVEN_API ARHCharacterBase : public ACharacter, public IRHCharacterActionInterface
+class RHYTHMHAVEN_API ARHCharacterBase : public ACharacter
 {
 	GENERATED_BODY()
 

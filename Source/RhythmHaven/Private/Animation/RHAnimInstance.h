@@ -85,5 +85,5 @@ private:
 
 	virtual bool ReceiveMovementType_Implementation(EMovementType InMovementType) override;
 	virtual bool ReceiveLeftFootDistanceToGround_Implementation(float Distance) override;
-	virtual bool ReceiveLRightFootDistanceToGround_Implementation(float Distance) override;
+	virtual bool ReceiveRightFootDistanceToGround_Implementation(float Distance) override;
 };

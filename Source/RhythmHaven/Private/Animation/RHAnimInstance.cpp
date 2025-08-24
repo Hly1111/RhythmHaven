@@ -60,7 +60,7 @@ void URHAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSeconds)
 
 bool URHAnimInstance::ReceiveMovementType_Implementation(EMovementType InMovementType)
 {
-	this->MovementType = InMovementType;
+	MovementType = InMovementType;
 	return true;
 }
 
@@ -70,7 +70,7 @@ bool URHAnimInstance::ReceiveLeftFootDistanceToGround_Implementation(float Dista
 	return true;
 }
 
-bool URHAnimInstance::ReceiveLRightFootDistanceToGround_Implementation(float Distance)
+bool URHAnimInstance::ReceiveRightFootDistanceToGround_Implementation(float Distance)
 {
 	RightFootToGroundDistance = Distance;
 	return true;
