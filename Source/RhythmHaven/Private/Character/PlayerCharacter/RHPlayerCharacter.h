@@ -64,6 +64,11 @@ private:
 	void HandleJumpStart();
 	void HandleJumpRelease();
 	virtual void Landed(const FHitResult& Hit) override;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
+	TObjectPtr<UInputAction> MeleeAttackAction;
+
+	void HandleMeleeAttack();
 	
 	/*Foot Step*/
 	void UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const;

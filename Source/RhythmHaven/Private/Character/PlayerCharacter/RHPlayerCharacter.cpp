@@ -26,6 +26,8 @@ ARHPlayerCharacter::ARHPlayerCharacter()
 	SpringArm->bUsePawnControlRotation = true;
 	bUseControllerRotationYaw = false;
 	GetCharacterMovement()->bOrientRotationToMovement = true;
+
+	Tags.Add(FName("Player"));
 }
 
 void ARHPlayerCharacter::BeginPlay()

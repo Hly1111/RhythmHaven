@@ -2,10 +2,11 @@
 
 
 #include "RHAction.h"
+#include "GameFramework/Character.h"
 
 
 // Sets default values for this component's properties
-URHAction::URHAction()
+URHAction::URHAction() : OwnerType()
 {
 	// Set this component to be initialized when the game starts, and to be ticked every frame.  You can turn these features
 	// off to improve performance if you don't need them.
@@ -20,8 +21,15 @@ void URHAction::BeginPlay()
 {
 	Super::BeginPlay();
 
-	// ...
-	
+	Owner = Cast<ACharacter>(GetOwner());
+	if (GetOwner()->ActorHasTag(FName("Enemy")))
+	{
+		OwnerType = EOwnerType::Enemy;
+	}
+	else if (GetOwner()->ActorHasTag(FName("Player")))
+	{
+		OwnerType = EOwnerType::Player;
+	}
 }
 
 
@@ -31,5 +39,10 @@ void URHAction::TickComponent(float DeltaTime, ELevelTick TickType, FActorCompon
 	Super::TickComponent(DeltaTime, TickType, ThisTickFunction);
 
 	// ...
+}
+
+void URHAction::TriggerAction(FGameplayTag NewAction, EPriority)
+{
+	
 }
 
