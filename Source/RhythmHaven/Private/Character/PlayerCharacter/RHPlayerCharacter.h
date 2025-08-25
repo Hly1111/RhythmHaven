@@ -34,8 +34,10 @@ private:
 	FVector GetLookForwardDirection() const;
 	FVector GetLookRightDirection() const;
 	FVector GetFaceForwardDirection() const;
+	void CalculateCameraAngularDifference();
+	float YawDifference;
 
-	
+	bool bIsLockedOn;
 	/*Input*/
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
@@ -53,8 +55,15 @@ private:
 	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
 	TObjectPtr<UInputAction> SprintAction;
 
-	void HandleSprintStart(const FInputActionValue& Value);
-	void HandleSprintStop(const FInputActionValue& Value);
+	void HandleSprintStart();
+	void HandleSprintStop();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
+	TObjectPtr<UInputAction> JumpAction;
+
+	void HandleJumpStart();
+	void HandleJumpRelease();
+	virtual void Landed(const FHitResult& Hit) override;
 	
 	/*Foot Step*/
 	void UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const;
@@ -69,11 +78,12 @@ private:
 	bool bRightFootStepPlayed;
 	float LeftFootDistanceToGround;
 	float RightFootDistanceToGround;
-
+	
 private:
 	virtual bool ChangeMovementType_Implementation(EMovementType MovementType, float MaxWalkSpeed) override;
 	virtual void RunStartAcceleration_Implementation() override;
 	virtual void Turn180Acceleration_Implementation() override;
 	virtual void RecoverSpeed_Implementation() override;
 	void Accelerate(float Multiplier) const;
+	virtual void JumpUp_Implementation() override;
 };

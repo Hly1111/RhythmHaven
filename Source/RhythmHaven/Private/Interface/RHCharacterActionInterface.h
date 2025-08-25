@@ -34,4 +34,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
 	void RecoverSpeed();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
+	void JumpUp();
 };

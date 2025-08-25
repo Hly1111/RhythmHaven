@@ -31,4 +31,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
 	bool ReceiveRightFootDistanceToGround(float Distance);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
+	bool ReceiveJumpPressed(bool Pressed);
 };

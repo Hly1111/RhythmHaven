@@ -39,6 +39,7 @@ private:
 	float AccelerationRotationAngle;
 	bool bIsAccelerating;
 	EMovementMode MovementMode;
+	bool bIsInAir;
 	bool bIsJumping;
 	bool bIsFalling;
 
@@ -49,6 +50,8 @@ private:
 
 	float LeftFootToGroundDistance;
 	float RightFootToGroundDistance;
+
+	bool bIsJumpPressed;
 
 	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
 	bool IsAccelerating() const { return bIsAccelerating; }
@@ -83,7 +86,32 @@ private:
 	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
 	bool IsLockedOn() const { return bIsLockedOn; }
 
+	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
+	bool IsJumping() const { return bIsJumping; }
+
+	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
+	bool IsFallingDown() const { return bIsFalling; }
+
+	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
+	bool IsInAir() const { return bIsInAir; }
+
+	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
+	bool IsFlying() const { return MovementMode == EMovementMode::MOVE_Flying; }
+
+	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
+	bool IsJumpPressed() const { return bIsJumpPressed; }
+
+	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
+	bool IsJumpReleased() const { return !bIsJumpPressed; }
+
+	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
+	float GetLeftFootDistanceToGround() const { return LeftFootToGroundDistance; }
+
+	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
+	float GetRightFootDistanceToGround() const { return RightFootToGroundDistance; }
+	
 	virtual bool ReceiveMovementType_Implementation(EMovementType InMovementType) override;
 	virtual bool ReceiveLeftFootDistanceToGround_Implementation(float Distance) override;
 	virtual bool ReceiveRightFootDistanceToGround_Implementation(float Distance) override;
+	virtual bool ReceiveJumpPressed_Implementation(bool Pressed) override;
 };

@@ -32,6 +32,7 @@ void URHAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSeconds)
 		bIsAccelerating = !FMath::IsNearlyEqual(ActorAcceleration2D.Length(), 0.f);
 
 		MovementMode = OwnerMovementComponent->MovementMode;
+		bIsInAir = OwnerMovementComponent->IsFalling();
 		bIsJumping = (MovementMode == EMovementMode::MOVE_Falling && ActorVelocity2D.Z > 0.f);
 		bIsFalling = (MovementMode == EMovementMode::MOVE_Falling && ActorVelocity2D.Z < 0.f);
 
@@ -73,5 +74,11 @@ bool URHAnimInstance::ReceiveLeftFootDistanceToGround_Implementation(float Dista
 bool URHAnimInstance::ReceiveRightFootDistanceToGround_Implementation(float Distance)
 {
 	RightFootToGroundDistance = Distance;
+	return true;
+}
+
+bool URHAnimInstance::ReceiveJumpPressed_Implementation(bool Pressed)
+{
+	bIsJumpPressed = Pressed;
 	return true;
 }

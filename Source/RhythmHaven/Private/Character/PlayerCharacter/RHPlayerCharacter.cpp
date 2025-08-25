@@ -8,6 +8,7 @@
 #include "EnhancedInputComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Interface/RHCharacterDataInterface.h"
+#include "Kismet/KismetMathLibrary.h"
 
 ARHPlayerCharacter::ARHPlayerCharacter()
 {
@@ -50,6 +51,8 @@ void ARHPlayerCharacter::Tick(float DeltaTime)
 
 	UpdateFootStep(FName("l_foot_sound"), LeftFootSound, bLeftFootStepPlayed, LeftFootDistanceToGround);
 	UpdateFootStep(FName("r_foot_sound"), RightFootSound, bRightFootStepPlayed, RightFootDistanceToGround);
+
+	CalculateCameraAngularDifference();
 }
 
 void ARHPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -72,6 +75,12 @@ void ARHPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 			EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Started, this, &ARHPlayerCharacter::HandleSprintStart);
 			EnhancedInputComponent->BindAction(SprintAction, ETriggerEvent::Completed, this, &ARHPlayerCharacter::HandleSprintStop);
 		}
+
+		if (JumpAction)
+		{
+			EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started,this,&ARHPlayerCharacter::HandleJumpStart);
+			EnhancedInputComponent->BindAction(JumpAction,ETriggerEvent::Completed,this,&ARHPlayerCharacter::HandleJumpRelease);
+		}
 	}
 }
 
@@ -90,13 +99,30 @@ FVector ARHPlayerCharacter::GetFaceForwardDirection() const
 	return FVector::CrossProduct(GetLookRightDirection(), FVector::UpVector);
 }
 
+void ARHPlayerCharacter::CalculateCameraAngularDifference()
+{
+	if(GetCharacterMovement()->GetLastInputVector().Length()>0 && !bIsLockedOn)
+	{
+		YawDifference = FMath::FindDeltaAngleDegrees(GetBaseAimRotation().Yaw, GetActorRotation().Yaw);
+		float OutValue = FMath::GetMappedRangeValueClamped(TRange<float>(55.f, 180.f), TRange<float>(0.2f, 0.6f), FMath::Abs(YawDifference));
+		if (UKismetMathLibrary::InRange_FloatFloat(YawDifference, 55.f, 145.f, true, true))
+		{
+			AddControllerYawInput(OutValue);
+		}
+		else if (UKismetMathLibrary::InRange_FloatFloat(YawDifference, -145.f, -55.f, true, true))
+		{
+			AddControllerYawInput(-OutValue);
+		}
+	}
+}
+
 void ARHPlayerCharacter::HandleMoveAction(const FInputActionValue& Value)
 {
 	FVector2d MovementValue = Value.Get<FVector2d>();
 	MovementValue.Normalize();
 
-	const float ScaleValueX = GetCharacterMovement()->IsMovingOnGround()? MovementValue.X : MovementValue.X * 0.2f;
-	const float ScaleValueY = GetCharacterMovement()->IsMovingOnGround()? MovementValue.Y : MovementValue.Y * 0.2f;
+	const float ScaleValueX = GetCharacterMovement()->IsMovingOnGround()? MovementValue.X : MovementValue.X * 1.2f;
+	const float ScaleValueY = GetCharacterMovement()->IsMovingOnGround()? MovementValue.Y : MovementValue.Y * 1.2f;
 	AddMovementInput(GetFaceForwardDirection(), ScaleValueY);
 	AddMovementInput(GetLookRightDirection(), ScaleValueX);
 }
@@ -109,7 +135,7 @@ void ARHPlayerCharacter::HandleLookAction(const FInputActionValue& Value)
 	AddControllerYawInput(LookValue.X);
 }
 
-void ARHPlayerCharacter::HandleSprintStart(const FInputActionValue& Value)
+void ARHPlayerCharacter::HandleSprintStart()
 {
 	if (this->GetClass()->ImplementsInterface(URHCharacterActionInterface::StaticClass()))
 	{
@@ -117,12 +143,35 @@ void ARHPlayerCharacter::HandleSprintStart(const FInputActionValue& Value)
 	}
 }
 
-void ARHPlayerCharacter::HandleSprintStop(const FInputActionValue& Value)
+void ARHPlayerCharacter::HandleSprintStop()
 {
 	if (this->GetClass()->ImplementsInterface(URHCharacterActionInterface::StaticClass()))
 	{
 		Execute_ChangeMovementType(this, EMovementType::Run, 800.f);
 	}
+}
+
+void ARHPlayerCharacter::HandleJumpStart()
+{
+	if (!bIsLockedOn)
+	{
+		StopAnimMontage(GetMesh()->GetAnimInstance()->GetCurrentActiveMontage());
+		Execute_ReceiveJumpPressed(GetMesh()->GetAnimInstance(), true);
+	}
+}
+
+void ARHPlayerCharacter::HandleJumpRelease()
+{
+	//Execute_ReceiveJumpPressed(GetMesh()->GetAnimInstance(), false);
+}
+
+void ARHPlayerCharacter::Landed(const FHitResult& Hit)
+{
+	Execute_ReceiveJumpPressed(GetMesh()->GetAnimInstance(), false);
+	GetCharacterMovement()->MaxAcceleration = 1900.f;
+	GetCharacterMovement()->GravityScale = 6.f;
+	GetCharacterMovement()->MaxWalkSpeed = bIsLockedOn? 150.f : 800.f;
+	HandleSprintStop();
 }
 
 #if WITH_EDITOR
@@ -150,12 +199,12 @@ void ARHPlayerCharacter::UpdateFootStep(FName SocketName,  USoundBase* FootSound
 		{
 			IRHCharacterDataInterface::Execute_ReceiveLeftFootDistanceToGround(GetMesh()->GetAnimInstance(), DistanceToGround);
 		}
-		else
+		else if (SocketName == TEXT("r_foot_sound"))
 		{
 			IRHCharacterDataInterface::Execute_ReceiveRightFootDistanceToGround(GetMesh()->GetAnimInstance(), DistanceToGround);
 		}
 		
-		if (DistanceToGround < 2.f)
+		if (DistanceToGround < 4.f)
 		{
 			if (!bIsStepPlayed)
 			{
@@ -166,7 +215,7 @@ void ARHPlayerCharacter::UpdateFootStep(FName SocketName,  USoundBase* FootSound
 				bIsStepPlayed = true;
 			}
 		}
-		else if (DistanceToGround > 10.f)
+		else if (DistanceToGround >= 10.f)
 		{
 			bIsStepPlayed = false;
 		}
@@ -209,6 +258,15 @@ void ARHPlayerCharacter::Accelerate(float Multiplier) const
 	{
 		GetCharacterMovement()->Velocity = Multiplier * Acceleration;
 	}
+}
+
+void ARHPlayerCharacter::JumpUp_Implementation()
+{
+	GetCharacterMovement()->MaxWalkSpeed = 800.f;
+	GetCharacterMovement()->JumpZVelocity = 4200.f;
+	GetCharacterMovement()->GravityScale = 12.f;
+	GetCharacterMovement()->MaxAcceleration = 3000.f;
+	Jump();
 }
 
 
