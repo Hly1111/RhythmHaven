@@ -82,3 +82,9 @@ bool URHAnimInstance::ReceiveJumpPressed_Implementation(bool Pressed)
 	bIsJumpPressed = Pressed;
 	return true;
 }
+
+bool URHAnimInstance::ReceiveLockOn_Implementation(bool LockOn)
+{
+	bIsLockedOn = LockOn;
+	return true;
+}

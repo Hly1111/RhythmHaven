@@ -3,29 +3,22 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameplayTagContainer.h"
-#include "Engine/DataAsset.h"
+#include "Abilities/GameplayAbility.h"
 #include "Enum/CameraShakeType.h"
 #include "Enum/MotionWarpingType.h"
-#include "RHPlayerActionPrimaryData.generated.h"
+#include "RHGameplayAbilityBase.generated.h"
 
 /**
  * 
  */
-UCLASS()
-class URHPlayerActionPrimaryData : public UPrimaryDataAsset
+UCLASS(Abstract)
+class RHYTHMHAVEN_API URHGameplayAbilityBase : public UGameplayAbility
 {
 	GENERATED_BODY()
 
 public:
 	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
 	TObjectPtr<UAnimMontage> AnimMontage;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
-	FName ActionName;
-	
-	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
-	FGameplayTag AttackType;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
 	bool bUseMotionWarping;
@@ -55,13 +48,7 @@ public:
 	float PlayerInterpTimeLength;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
-	bool UseSeparateEnemyHitAnimation;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
 	TObjectPtr<UAnimMontage> EnemyHitMontage;
-
-	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
-	TObjectPtr<UAnimMontage> EnemyHitInAirMontage;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
 	float AttackAudioStartTime;
@@ -106,5 +93,8 @@ public:
 	ECameraShakeType CameraShakeType;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
-	float DamageValue;
+	TSubclassOf<UGameplayEffect> GameplayEffectToApply;
+
+	virtual void ActivateAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, const FGameplayEventData* TriggerEventData) override;
+	virtual void EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled) override;
 };

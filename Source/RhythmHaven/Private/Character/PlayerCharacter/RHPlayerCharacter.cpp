@@ -6,6 +6,9 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
+#include "GameplayTagsManager.h"
+#include "Components/RHTargeting.h"
+#include "GAS/RHAbilitySystemComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Interface/RHCharacterDataInterface.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -55,6 +58,25 @@ void ARHPlayerCharacter::Tick(float DeltaTime)
 	UpdateFootStep(FName("r_foot_sound"), RightFootSound, bRightFootStepPlayed, RightFootDistanceToGround);
 
 	CalculateCameraAngularDifference();
+
+	if (bIsLockedOn && !bPressedJump && !GetMesh()->GetAnimInstance()->WasAnimNotifyStateActiveInAnyState(NoRotateCharacterNotifyState))
+	{
+		RotateForwardVectorToEnemy();
+
+		PreviousEnemy = TargettingComponent->GetCurrentEnemy();
+		bResetLockOnRotation = false;
+	}
+	else
+	{
+		if (!GetMesh()->GetAnimInstance()->IsAnyMontagePlaying())
+		{
+			if (!bResetLockOnRotation)
+			{
+				bResetLockOnRotation = true;
+				TargettingComponent->ResetCurrentEnemies();
+			}
+		}
+	}
 }
 
 void ARHPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
@@ -82,6 +104,21 @@ void ARHPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		{
 			EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started,this,&ARHPlayerCharacter::HandleJumpStart);
 			EnhancedInputComponent->BindAction(JumpAction,ETriggerEvent::Completed,this,&ARHPlayerCharacter::HandleJumpRelease);
+		}
+
+		if (MeleeAttackAction)
+		{
+			EnhancedInputComponent->BindAction(MeleeAttackAction, ETriggerEvent::Started,this, &ARHPlayerCharacter::HandleMeleeAttack);
+		}
+
+		if (LockOnAction)
+		{
+			EnhancedInputComponent->BindAction(LockOnAction,ETriggerEvent::Started,this, &ARHPlayerCharacter::HandleLockOn);
+		}
+
+		if (LockOnSwitchAction)
+		{
+			EnhancedInputComponent->BindAction(LockOnSwitchAction,ETriggerEvent::Started,this, &ARHPlayerCharacter::HandleLockOnSwitch);
 		}
 	}
 }
@@ -115,6 +152,18 @@ void ARHPlayerCharacter::CalculateCameraAngularDifference()
 		{
 			AddControllerYawInput(-OutValue);
 		}
+	}
+}
+
+void ARHPlayerCharacter::RotateForwardVectorToEnemy()
+{
+	AActor* CurrentEnemy = TargettingComponent->GetCurrentEnemy();
+	if (IsValid(CurrentEnemy))
+	{
+		FRotator CurrentLookAtRotation = GetActorRotation();
+		FRotator LookAtTargetRotation = UKismetMathLibrary::FindLookAtRotation(GetActorLocation(), CurrentEnemy->GetActorLocation());
+		float Yaw = UKismetMathLibrary::RInterpTo(CurrentLookAtRotation, LookAtTargetRotation, GetWorld()->GetDeltaSeconds(), 10).Yaw;
+		SetActorRotation(FRotator(0, Yaw, 0));
 	}
 }
 
@@ -176,12 +225,47 @@ void ARHPlayerCharacter::Landed(const FHitResult& Hit)
 	HandleSprintStop();
 }
 
+void ARHPlayerCharacter::HandleMeleeAttack()
+{
+	ASC->TryActivateCombo(GetMeleeAttackTag());
+}
+
 #if WITH_EDITOR
 #define RH_DRAW_FOOT_LINE(World, Start, End, bHit, Duration)\
 DrawDebugLine((World), (Start), (End), (bHit) ? FColor::Red : FColor::Green, false, (Duration), 0, 0.15f);
 #else
 #define RH_DRAW_FOOT_LINE(World, Start, End, bHit, Duration)
 #endif
+
+void ARHPlayerCharacter::HandleLockOn()
+{
+	if (!bIsLockedOn)
+	{
+		bIsLockedOn = true;
+		IRHCharacterDataInterface::Execute_ReceiveLockOn(GetMesh()->GetAnimInstance(), bIsLockedOn);
+		GetCharacterMovement()->MaxAcceleration = 200.f;
+		Execute_ChangeMovementType(this, EMovementType::Walk, 150);
+		TargettingComponent->FindClosestEnemy();
+	}
+	else
+	{
+		HandleLockOff();
+	}
+}
+
+void ARHPlayerCharacter::HandleLockOff()
+{
+	bIsLockedOn = false;
+	IRHCharacterDataInterface::Execute_ReceiveLockOn(GetMesh()->GetAnimInstance(), bIsLockedOn);
+	GetCharacterMovement()->MaxAcceleration = 1900.f;
+	Execute_ChangeMovementType(this, EMovementType::Run, 800);
+}
+
+void ARHPlayerCharacter::HandleLockOnSwitch()
+{
+	if (!bIsLockedOn) return;
+	TargettingComponent->FindClosestEnemy();
+}
 
 void ARHPlayerCharacter::UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const
 {
@@ -269,6 +353,11 @@ void ARHPlayerCharacter::JumpUp_Implementation()
 	GetCharacterMovement()->GravityScale = 12.f;
 	GetCharacterMovement()->MaxAcceleration = 3000.f;
 	Jump();
+}
+
+FGameplayTag ARHPlayerCharacter::GetMeleeAttackTag()
+{
+	return UGameplayTagsManager::Get().RequestGameplayTag(FName("Attack.MeleeAttack"));
 }
 
 

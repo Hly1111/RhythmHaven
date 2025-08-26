@@ -8,24 +8,35 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da5a4d19-c396-47ee-ab58-c797276e7e21" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/CameraShakeType.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/CameraShakeType.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/MotionWarpingType.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/MotionWarpingType.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/OwnerType.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/OwnerType.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/Priority.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/Priority.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/AbilityName.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHGameplayAbilityBase.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RhythmHaven.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RhythmHaven.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Character/PlayerCharacter/RH_PlayerCharacter_BP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Character/PlayerCharacter/RH_PlayerCharacter_BP.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Data/DataAssets/DA_Test.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Data/RH_ActionData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Data/RH_ActionData.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Input/RH_Gameplay_IMC.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Input/RH_Gameplay_IMC.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Maps/OpenMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Maps/OpenMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_01_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_01_Seq.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_02_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_02_Seq.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_03_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_03_Seq.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_04_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/02_Attack/01_Combo_Attack_01/AS_Combo_Attack_01_04_Seq.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/RhythmHaven.uproject" beforeDir="false" afterPath="$PROJECT_DIR$/RhythmHaven.uproject" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/RHAnimInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/RHAnimInstance.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/RHAnimInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/RHAnimInstance.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHAction.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHAction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHAction.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/RhythmHaven.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/RhythmHaven.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/RHCharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/RHCharacterBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/RHCharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/RHCharacterBase.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHAction.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHAction.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHPlayerActionPrimaryData.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHPlayerActionPrimaryData.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/CameraShakeType.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/CameraShakeType.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/MotionWarpingType.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/MotionWarpingType.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/Priority.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHGameplayAbilityBase.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/Priority.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/AbilityName.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Interface/RHCharacterDataInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Interface/RHCharacterDataInterface.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,24 +50,36 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/AVEncoder/Private/Decoders/vdecmpeg4/M4XCmdSingleThread.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Core/Private/Containers/ContainersTest.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Core/Public/Math/UnrealMathUtility.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectPtr.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Engine/Classes/Engine/EngineTypes.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Engine/Classes/Engine/OverlapResult.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Engine/Private/Collision/CollisionDebugDrawing.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Engine/Private/Components/CharacterMovementComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Engine/Private/KismetSystemLibrary.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Engine/Public/PrimitiveUniformShaderParametersBuilder.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/AnimNotify/AN_JumpUp.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/AnimNotify/AN_JumpUp.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHPlayerActionPrimaryData.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHPlayerActionPrimaryData.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/AbilityName.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/AbilityName.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/CameraShakeType.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/CameraShakeType.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/MotionWarpingType.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/MotionWarpingType.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/OwnerType.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/OwnerType.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/Priority.cpp" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/Priority.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHAbilitySystemComponent.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHAttributeSet.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHAttributeSet.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHGameplayAbilityBase.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHGameplayAbilityBase.h" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
   <component name="ProjectColorInfo">{
@@ -171,6 +194,7 @@
       <workItem from="1756051667467" duration="664000" />
       <workItem from="1756096692010" duration="14897000" />
       <workItem from="1756113302683" duration="2389000" />
+      <workItem from="1756185262393" duration="26240000" />
     </task>
     <servers />
   </component>

@@ -2,19 +2,20 @@
 
 
 #include "RHCharacterBase.h"
-#include "Components/RHAction.h"
 #include "Components/RHHit.h"
-#include "GameFramework/CharacterMovementComponent.h"
-#include "Interface/RHCharacterDataInterface.h"
+#include "Components/RHTargeting.h"
+#include "GAS/RHAbilitySystemComponent.h"
+#include "GAS/RHAttributeSet.h"
 
 
 // Sets default values
 ARHCharacterBase::ARHCharacterBase()
 {
 	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
-
-	ActionComponent = CreateDefaultSubobject<URHAction>(TEXT("Action Component"));
+	ASC = CreateDefaultSubobject<URHAbilitySystemComponent>(TEXT("Ability System Component"));
+	AttributeSet = CreateDefaultSubobject<URHAttributeSet>(TEXT("Attribute Set"));
 	HitComponent = CreateDefaultSubobject<URHHit>(TEXT("Hit Component"));
+	TargettingComponent = CreateDefaultSubobject<URHTargeting>(TEXT("Targeting Component"));
 }
 
 // Called when the game starts or when spawned
@@ -26,5 +27,8 @@ void ARHCharacterBase::BeginPlay()
 	{
 		GetMesh()->LinkAnimClassLayers(LinkAnimLayerClass);
 	}
+
+	ASC->ApplyInitialGameplayEffects();
+	ASC->GiveInitialGameplayAbilities();
 }
 

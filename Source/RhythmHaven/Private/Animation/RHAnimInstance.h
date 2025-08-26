@@ -114,4 +114,5 @@ private:
 	virtual bool ReceiveLeftFootDistanceToGround_Implementation(float Distance) override;
 	virtual bool ReceiveRightFootDistanceToGround_Implementation(float Distance) override;
 	virtual bool ReceiveJumpPressed_Implementation(bool Pressed) override;
+	virtual bool ReceiveLockOn_Implementation(bool LockOn) override;
 };

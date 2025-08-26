@@ -34,4 +34,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
 	bool ReceiveJumpPressed(bool Pressed);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
+	bool ReceiveLockOn(bool LockOn);
 };

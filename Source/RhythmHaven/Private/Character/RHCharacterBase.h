@@ -18,11 +18,17 @@ public:
 protected:
 	virtual void BeginPlay() override;
 
-	UPROPERTY(VisibleAnywhere, Category = "Character Components")
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Character Components")
+	TObjectPtr<class URHAbilitySystemComponent> ASC;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Character Components")
+	TObjectPtr<class URHAttributeSet> AttributeSet;
+
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category = "Character Components")
 	TObjectPtr<class URHHit> HitComponent;
 
-	UPROPERTY(VisibleAnywhere, Category = "Character Components")
-	TObjectPtr<class URHAction> ActionComponent;
+	UPROPERTY(VisibleAnywhere,BlueprintReadOnly, Category = "Character Components")
+	TObjectPtr<class URHTargeting> TargettingComponent;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Animations")
 	TSubclassOf<UAnimInstance> LinkAnimLayerClass;

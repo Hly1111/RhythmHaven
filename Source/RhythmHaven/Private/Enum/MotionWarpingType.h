@@ -7,7 +7,9 @@
 UENUM(BlueprintType)
 enum class EMotionWarpingType : uint8
 {
-	None
+	OnGroundAttack,
+	InAirAttack,
+	Dodge
 };
 
 UENUM(BlueprintType)

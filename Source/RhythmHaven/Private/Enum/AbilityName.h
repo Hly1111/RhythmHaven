@@ -4,13 +4,14 @@
 
 #include "CoreMinimal.h"
 
+/**
+ * 
+ */
 UENUM(BlueprintType)
-enum class EPriority : uint8
+enum class EAbilityName : uint8
 {
-	Low,
-	Medium,
-	High,
-	VeryHigh,
-	Supreme,
-	NotApplicable
+	LightCombo01,
+	LightCombo02,
+	LightCombo03,
+	LightCombo04
 };

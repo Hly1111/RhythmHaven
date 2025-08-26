@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "GameplayTagContainer.h"
 #include "Character/RHCharacterBase.h"
 #include "InputActionValue.h"
 #include "Interface/RHCharacterDataInterface.h"
@@ -37,7 +38,16 @@ private:
 	void CalculateCameraAngularDifference();
 	float YawDifference;
 
-	bool bIsLockedOn;
+	bool bIsLockedOn;	
+	bool bResetLockOnRotation;
+	
+	UPROPERTY(EditDefaultsOnly, Category = Camera)
+	TSubclassOf<UAnimNotifyState> NoRotateCharacterNotifyState;
+
+	void RotateForwardVectorToEnemy();
+	
+	UPROPERTY()
+	TObjectPtr<AActor> PreviousEnemy;
 	/*Input*/
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
@@ -69,6 +79,16 @@ private:
 	TObjectPtr<UInputAction> MeleeAttackAction;
 
 	void HandleMeleeAttack();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
+	TObjectPtr<UInputAction> LockOnAction;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
+	TObjectPtr<UInputAction> LockOnSwitchAction;
+
+	void HandleLockOn();
+	void HandleLockOff();
+	void HandleLockOnSwitch();
 	
 	/*Foot Step*/
 	void UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const;
@@ -91,4 +111,7 @@ private:
 	virtual void RecoverSpeed_Implementation() override;
 	void Accelerate(float Multiplier) const;
 	virtual void JumpUp_Implementation() override;
+
+	/* TAGS */
+	static FGameplayTag GetMeleeAttackTag();
 };
