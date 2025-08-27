@@ -49,3 +49,8 @@ void URHAbilitySystemComponent::TryActivateCombo(FGameplayTag ComboTag)
 		ApplyGameplayEffectSpecToSelf(*Handle.Data.Get());
 	}
 }
+
+EOwnerType URHAbilitySystemComponent::GetOwnerType() const
+{
+	return OwnerType;
+}

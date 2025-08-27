@@ -21,6 +21,7 @@ public:
 	void GiveInitialGameplayAbilities();
 
 	void TryActivateCombo(FGameplayTag ComboTag);
+	EOwnerType GetOwnerType() const;
 private:
 	UPROPERTY()
 	TObjectPtr<ACharacter> Owner;

@@ -36,6 +36,7 @@ private:
 	float ActorLeanAngle;
 	
 	FVector ActorVelocity2D;
+	float VelocityRotationAngle;
 	float AccelerationRotationAngle;
 	bool bIsAccelerating;
 	EMovementMode MovementMode;
@@ -72,6 +73,9 @@ private:
 	float GetMaxWalkSpeed() const { return OwnerMovementComponent ? OwnerMovementComponent->GetMaxSpeed() : 0.f; }
 
 	UFUNCTION(BlueprintCallable, Category = "Animation Data")
+	float GetActorVelocityRotationAngle() const { return VelocityRotationAngle; }
+
+	UFUNCTION(BlueprintCallable, Category = "Animation Data")
 	float GetActorLeanAngle() const { return ActorLeanAngle; }
 
 	UFUNCTION(BlueprintCallable, Category = "Animation Data")
@@ -82,6 +86,9 @@ private:
 
 	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
 	bool IsTurn180() const { return IsTurnLeft180() || IsTurnRight180(); }
+
+	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
+	ELocomotionDirection GetVelocityDirection() const { return LocomotionDirection; }
 
 	UFUNCTION(BlueprintCallable, Category = "Animation Data", meta = (BlueprintThreadSafe))
 	bool IsLockedOn() const { return bIsLockedOn; }

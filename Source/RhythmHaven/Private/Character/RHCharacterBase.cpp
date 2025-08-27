@@ -3,6 +3,7 @@
 
 #include "RHCharacterBase.h"
 #include "Components/RHHit.h"
+#include "Components/MotionWarping/RHMotionWarping.h"
 #include "Components/RHTargeting.h"
 #include "GAS/RHAbilitySystemComponent.h"
 #include "GAS/RHAttributeSet.h"
@@ -15,7 +16,28 @@ ARHCharacterBase::ARHCharacterBase()
 	ASC = CreateDefaultSubobject<URHAbilitySystemComponent>(TEXT("Ability System Component"));
 	AttributeSet = CreateDefaultSubobject<URHAttributeSet>(TEXT("Attribute Set"));
 	HitComponent = CreateDefaultSubobject<URHHit>(TEXT("Hit Component"));
-	TargettingComponent = CreateDefaultSubobject<URHTargeting>(TEXT("Targeting Component"));
+	TargetingComponent = CreateDefaultSubobject<URHTargeting>(TEXT("Targeting Component"));
+	MotionWarpingComponent = CreateDefaultSubobject<URHMotionWarping>(TEXT("Motion Warping Component"));
+}
+
+class URHTargeting* ARHCharacterBase::GetTargetingComponent() const
+{
+	return TargetingComponent;
+}
+
+class URHHit* ARHCharacterBase::GetHitComponent() const
+{
+	return HitComponent;
+}
+
+class URHMotionWarping* ARHCharacterBase::GetMotionWarpingComponent() const
+{
+	return MotionWarpingComponent;
+}
+
+UAbilitySystemComponent* ARHCharacterBase::GetAbilitySystemComponent() const
+{
+	return ASC;
 }
 
 // Called when the game starts or when spawned
@@ -30,5 +52,6 @@ void ARHCharacterBase::BeginPlay()
 
 	ASC->ApplyInitialGameplayEffects();
 	ASC->GiveInitialGameplayAbilities();
+	MotionWarpingComponent->InitialMotionWarpingStrategyPool();
 }
 

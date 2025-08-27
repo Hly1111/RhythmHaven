@@ -36,6 +36,7 @@ void URHAnimInstance::NativeThreadSafeUpdateAnimation(float DeltaSeconds)
 		bIsJumping = (MovementMode == EMovementMode::MOVE_Falling && ActorVelocity2D.Z > 0.f);
 		bIsFalling = (MovementMode == EMovementMode::MOVE_Falling && ActorVelocity2D.Z < 0.f);
 
+		VelocityRotationAngle = UKismetAnimationLibrary::CalculateDirection(ActorVelocity2D, ActorRotation);
 		AccelerationRotationAngle = UKismetAnimationLibrary::CalculateDirection(ActorAcceleration2D, ActorRotation);
 		if (ActorAcceleration2D.Size() > 0.f)
 		{

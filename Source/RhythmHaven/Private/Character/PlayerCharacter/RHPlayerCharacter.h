@@ -6,6 +6,7 @@
 #include "GameplayTagContainer.h"
 #include "Character/RHCharacterBase.h"
 #include "InputActionValue.h"
+#include "Interface/RHCharacterActionInterface.h"
 #include "Interface/RHCharacterDataInterface.h"
 #include "RHPlayerCharacter.generated.h"
 

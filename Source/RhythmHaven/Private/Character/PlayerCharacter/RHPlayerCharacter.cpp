@@ -63,7 +63,7 @@ void ARHPlayerCharacter::Tick(float DeltaTime)
 	{
 		RotateForwardVectorToEnemy();
 
-		PreviousEnemy = TargettingComponent->GetCurrentEnemy();
+		PreviousEnemy = TargetingComponent->GetCurrentEnemy();
 		bResetLockOnRotation = false;
 	}
 	else
@@ -73,7 +73,7 @@ void ARHPlayerCharacter::Tick(float DeltaTime)
 			if (!bResetLockOnRotation)
 			{
 				bResetLockOnRotation = true;
-				TargettingComponent->ResetCurrentEnemies();
+				TargetingComponent->ResetCurrentEnemies();
 			}
 		}
 	}
@@ -157,7 +157,7 @@ void ARHPlayerCharacter::CalculateCameraAngularDifference()
 
 void ARHPlayerCharacter::RotateForwardVectorToEnemy()
 {
-	AActor* CurrentEnemy = TargettingComponent->GetCurrentEnemy();
+	AActor* CurrentEnemy = TargetingComponent->GetCurrentEnemy();
 	if (IsValid(CurrentEnemy))
 	{
 		FRotator CurrentLookAtRotation = GetActorRotation();
@@ -221,7 +221,7 @@ void ARHPlayerCharacter::Landed(const FHitResult& Hit)
 	Execute_ReceiveJumpPressed(GetMesh()->GetAnimInstance(), false);
 	GetCharacterMovement()->MaxAcceleration = 1900.f;
 	GetCharacterMovement()->GravityScale = 6.f;
-	GetCharacterMovement()->MaxWalkSpeed = bIsLockedOn? 150.f : 800.f;
+	GetCharacterMovement()->MaxWalkSpeed = bIsLockedOn? 200.f : 800.f;
 	HandleSprintStop();
 }
 
@@ -244,8 +244,8 @@ void ARHPlayerCharacter::HandleLockOn()
 		bIsLockedOn = true;
 		IRHCharacterDataInterface::Execute_ReceiveLockOn(GetMesh()->GetAnimInstance(), bIsLockedOn);
 		GetCharacterMovement()->MaxAcceleration = 200.f;
-		Execute_ChangeMovementType(this, EMovementType::Walk, 150);
-		TargettingComponent->FindClosestEnemy();
+		Execute_ChangeMovementType(this, EMovementType::Walk, 200);
+		TargetingComponent->FindClosestEnemy();
 	}
 	else
 	{
@@ -264,7 +264,7 @@ void ARHPlayerCharacter::HandleLockOff()
 void ARHPlayerCharacter::HandleLockOnSwitch()
 {
 	if (!bIsLockedOn) return;
-	TargettingComponent->FindClosestEnemy();
+	TargetingComponent->FindClosestEnemy();
 }
 
 void ARHPlayerCharacter::UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const
