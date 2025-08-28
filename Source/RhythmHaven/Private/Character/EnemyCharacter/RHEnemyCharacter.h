@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Character/RHCharacterBase.h"
+#include "Components/RHHitParams.h"
 #include "RHEnemyCharacter.generated.h"
 
 UCLASS(Abstract)
@@ -23,6 +24,9 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+	/* Interface */
+
+	virtual void EnemyReceiveDamage_Implementation(FRHHitParams HitData, ACharacter* AttackInstigator) override;
+	virtual bool SetMovementMode_Implementation(EMovementMode Mode) override;
+	virtual bool IsMovingOnGround_Implementation() override;
 };

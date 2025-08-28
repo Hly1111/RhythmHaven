@@ -5,17 +5,17 @@
 #include "GameFramework/Actor.h"
 #include "Kismet/KismetMathLibrary.h"
 
-void UOnGroundComboWarp::ApplyWarp(UGameplayAbilityData& AbilityData, AActor* Actor1, AActor* Actor2, FVector& OutWarpLocation, FRotator& OutWarpRotation)
+void UOnGroundComboWarp::ApplyWarp(const FMotionWarpingData& Data, AActor* Actor1, AActor* Actor2, FVector& OutWarpLocation, FRotator& OutWarpRotation)
 {
-	if (IsValid(Actor2) && AbilityData.PlayerWarpTriggerRange > Actor1->GetDistanceTo(Actor2))
+	if (IsValid(Actor2) && Data.WarpTriggerRange > Actor1->GetDistanceTo(Actor2))
 	{
 		FVector Direction = (Actor1->GetActorLocation() - Actor2->GetActorLocation()).GetSafeNormal();
 		FVector Offset =
-			AbilityData.PlayerWarpingOffsetX * Actor1->GetActorForwardVector() +
-			AbilityData.PlayerWarpingOffsetY * Actor1->GetActorRightVector() +
-			AbilityData.PlayerWarpingOffsetZ * Actor1->GetActorUpVector();
+			Data.WarpingOffsetX * Actor1->GetActorForwardVector() +
+			Data.WarpingOffsetY * Actor1->GetActorRightVector() +
+			Data.WarpingOffsetZ * Actor1->GetActorUpVector();
 
-		OutWarpLocation = Actor2->GetActorLocation() + Direction * AbilityData.PlayerDistanceToEnemy + Offset;
+		OutWarpLocation = Actor2->GetActorLocation() + Direction * Data.DistanceToEnemy + Offset;
 		OutWarpRotation = UKismetMathLibrary::FindLookAtRotation(Actor1->GetActorLocation(), Actor2->GetActorLocation());
 
 #ifdef WITH_EDITOR

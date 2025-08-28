@@ -7,7 +7,9 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "GameplayTagsManager.h"
+#include "Components/BoxComponent.h"
 #include "Components/RHTargeting.h"
+#include "Components/WeaponHitBox.h"
 #include "GAS/RHAbilitySystemComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "Interface/RHCharacterDataInterface.h"
@@ -25,6 +27,11 @@ ARHPlayerCharacter::ARHPlayerCharacter()
 
 	WeaponComponent=CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("Weapon"));
 	WeaponComponent->SetupAttachment(GetMesh(), FName("weapon_rSocket"));
+
+	WeaponBox = CreateDefaultSubobject<UWeaponHitBox>(TEXT("Weapon Box"));
+	WeaponBox->SetupAttachment(WeaponComponent,FName("Root"));
+	WeaponBox->SetBoxExtent(FVector(12.f,110.f,12.f));
+	WeaponBox->AddRelativeLocation(FVector(0.0f,70.f,0.0f));
 
 	SpringArm->bUsePawnControlRotation = true;
 	bUseControllerRotationYaw = false;
@@ -47,6 +54,7 @@ void ARHPlayerCharacter::BeginPlay()
 				LocalPlayerSubsystem->AddMappingContext(GameplayInputContext, 0);
 			}
 		}
+		PlayerController->SetInputMode(FInputModeGameOnly());
 	}
 }
 
@@ -65,6 +73,9 @@ void ARHPlayerCharacter::Tick(float DeltaTime)
 
 		PreviousEnemy = TargetingComponent->GetCurrentEnemy();
 		bResetLockOnRotation = false;
+#ifdef WITH_EDITOR
+		DrawDebugSphere(this->GetWorld(), PreviousEnemy->GetActorLocation(), 30, 12, FColor::White, 0, 0,0,1);
+#endif
 	}
 	else
 	{
@@ -192,6 +203,10 @@ void ARHPlayerCharacter::HandleSprintStart()
 	{
 		Execute_ChangeMovementType(this, EMovementType::Sprint, 1000.f);
 	}
+	if (bIsLockedOn)
+	{
+		HandleLockOff();
+	}
 }
 
 void ARHPlayerCharacter::HandleSprintStop()
@@ -221,7 +236,7 @@ void ARHPlayerCharacter::Landed(const FHitResult& Hit)
 	Execute_ReceiveJumpPressed(GetMesh()->GetAnimInstance(), false);
 	GetCharacterMovement()->MaxAcceleration = 1900.f;
 	GetCharacterMovement()->GravityScale = 6.f;
-	GetCharacterMovement()->MaxWalkSpeed = bIsLockedOn? 200.f : 800.f;
+	GetCharacterMovement()->MaxWalkSpeed = bIsLockedOn? 300.f : 800.f;
 	HandleSprintStop();
 }
 
@@ -243,8 +258,8 @@ void ARHPlayerCharacter::HandleLockOn()
 	{
 		bIsLockedOn = true;
 		IRHCharacterDataInterface::Execute_ReceiveLockOn(GetMesh()->GetAnimInstance(), bIsLockedOn);
-		GetCharacterMovement()->MaxAcceleration = 200.f;
-		Execute_ChangeMovementType(this, EMovementType::Walk, 200);
+		GetCharacterMovement()->MaxAcceleration = 400.f;
+		Execute_ChangeMovementType(this, EMovementType::Walk, 300);
 		TargetingComponent->FindClosestEnemy();
 	}
 	else
@@ -353,6 +368,14 @@ void ARHPlayerCharacter::JumpUp_Implementation()
 	GetCharacterMovement()->GravityScale = 12.f;
 	GetCharacterMovement()->MaxAcceleration = 3000.f;
 	Jump();
+}
+
+void ARHPlayerCharacter::PlayAttackSound_Implementation(USoundBase* SoundToPlay, float StartTime)
+{
+	if (IsValid(SoundToPlay))
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, SoundToPlay, GetActorLocation(), 1,1, StartTime);
+	}
 }
 
 FGameplayTag ARHPlayerCharacter::GetMeleeAttackTag()

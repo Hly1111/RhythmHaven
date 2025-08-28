@@ -2,7 +2,6 @@
 
 
 #include "RHCharacterBase.h"
-#include "Components/RHHit.h"
 #include "Components/MotionWarping/RHMotionWarping.h"
 #include "Components/RHTargeting.h"
 #include "GAS/RHAbilitySystemComponent.h"
@@ -15,7 +14,6 @@ ARHCharacterBase::ARHCharacterBase()
 	GetMesh()->SetCollisionEnabled(ECollisionEnabled::NoCollision);
 	ASC = CreateDefaultSubobject<URHAbilitySystemComponent>(TEXT("Ability System Component"));
 	AttributeSet = CreateDefaultSubobject<URHAttributeSet>(TEXT("Attribute Set"));
-	HitComponent = CreateDefaultSubobject<URHHit>(TEXT("Hit Component"));
 	TargetingComponent = CreateDefaultSubobject<URHTargeting>(TEXT("Targeting Component"));
 	MotionWarpingComponent = CreateDefaultSubobject<URHMotionWarping>(TEXT("Motion Warping Component"));
 }
@@ -23,11 +21,6 @@ ARHCharacterBase::ARHCharacterBase()
 class URHTargeting* ARHCharacterBase::GetTargetingComponent() const
 {
 	return TargetingComponent;
-}
-
-class URHHit* ARHCharacterBase::GetHitComponent() const
-{
-	return HitComponent;
 }
 
 class URHMotionWarping* ARHCharacterBase::GetMotionWarpingComponent() const

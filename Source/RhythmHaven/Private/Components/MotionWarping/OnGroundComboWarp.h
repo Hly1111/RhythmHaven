@@ -15,5 +15,5 @@ class RHYTHMHAVEN_API UOnGroundComboWarp : public UMotionWarpingStrategyBase
 	GENERATED_BODY()
 
 public:
-	virtual void ApplyWarp(UGameplayAbilityData& AbilityData, AActor* Actor1, AActor* Actor2, FVector& OutWarpLocation, FRotator& OutWarpRotation) override;
+	virtual void ApplyWarp(const FMotionWarpingData& Data, AActor* Actor1, AActor* Actor2, FVector& OutWarpLocation, FRotator& OutWarpRotation) override;
 };

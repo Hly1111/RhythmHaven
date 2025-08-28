@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Components/RHHitParams.h"
 #include "Enum/MovementType.h"
 #include "UObject/Interface.h"
 #include "RHCharacterActionInterface.generated.h"
@@ -37,4 +38,13 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
 	void JumpUp();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
+	void EnemyReceiveDamage(FRHHitParams HitData, ACharacter* AttackInstigator);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
+	void PlayAttackSound(USoundBase* SoundToPlay, float StartTime);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
+	bool SetMovementMode(EMovementMode Mode);
 };

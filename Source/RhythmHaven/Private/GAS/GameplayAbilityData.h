@@ -94,4 +94,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
 	TSubclassOf<class UGameplayEffect> GameplayEffectToApply;
+	
+	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
+	float Damage;
 };

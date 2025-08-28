@@ -5,7 +5,7 @@
 #include "Abilities/Tasks/AbilityTask_PlayMontageAndWait.h"
 #include "Character/EnemyCharacter/RHEnemyCharacter.h"
 #include "GameFramework/Character.h"
-#include "GAS/RHGameplayAbilityBase.h"
+#include "GAS/RHComboGameplayAbility.h"
 #include "Kismet/KismetSystemLibrary.h"
 
 void URHAbilitySystemComponent::BeginPlay()

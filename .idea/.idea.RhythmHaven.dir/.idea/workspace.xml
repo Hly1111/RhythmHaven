@@ -8,68 +8,41 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da5a4d19-c396-47ee-ab58-c797276e7e21" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/MotionWarpingStrategyBase.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/MotionWarpingStrategyBase.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/OnGroundComboWarp.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/OnGroundComboWarp.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/RHMotionWarping.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/RHMotionWarping.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/GameplayAbilityData.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/GameplayAbilityData.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHHitParams.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHHitParams.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/WeaponHitBox.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/WeaponHitBox.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RhythmHaven.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RhythmHaven.dir/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/Mannequin/RH_MannequinLayer_ABP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/Mannequin/RH_MannequinLayer_ABP.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/RH_AnimationLayerSetup_ABP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/RH_AnimationLayerSetup_ABP.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/ANS/ANS_ComboWindow.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/ANS/ANS_InputBufferWindow.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/ANS/ANS_NoFootIK.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/ANS/ANS_NoRotateCharacter.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/Mannequin/BS_Move.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/Mannequin/BS_WalkLoop8D.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/Mannequin/BS_WalkStart8D.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/Mannequin/RH_MannequinLayer_ABP.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/RH_AnimationLayerBase_ABI.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/RH_AnimationLayerSetup_ABP.uasset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Animation/RH_CharacterBase_ABP.uasset" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Character/PlayerCharacter/RH_PlayerCharacter_BP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Character/PlayerCharacter/RH_PlayerCharacter_BP.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Character/RH_EnemyCharacter_BP.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Character/RH_EnemyCharacter_BP.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Data/RH_ActionData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Data/RH_ActionData.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_01_Seq_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_01_Seq_Montage.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_02_Seq_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_02_Seq_Montage.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_03_Seq_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_03_Seq_Montage.uasset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_04_Seq_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_04_Seq_Montage.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/RH_GA_MeleeAttack_01.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/RH_GA_MeleeAttack_01.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/RH_GA_MeleeAttack_02.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/RH_GA_MeleeAttack_02.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/RH_GA_MeleeAttack_03.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/RH_GA_MeleeAttack_03.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/RH_GA_MeleeAttack_04.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/RH_GA_MeleeAttack_04.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/01_Walk_F_0/AS_Walk_Loop_F_0_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/01_Walk_F_0/AS_Walk_Loop_F_0_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/01_Walk_F_0/AS_Walk_Start_F_0_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/01_Walk_F_0/AS_Walk_Start_F_0_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/01_Walk_F_0/AS_Walk_Stop_F_0_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/01_Walk_F_0/AS_Walk_Stop_F_0_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/02_Walk_F_L_45/AS_Walk_Loop_F_L_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/02_Walk_F_L_45/AS_Walk_Loop_F_L_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/02_Walk_F_L_45/AS_Walk_Start_F_L_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/02_Walk_F_L_45/AS_Walk_Start_F_L_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/02_Walk_F_L_45/AS_Walk_Stop_F_L_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/02_Walk_F_L_45/AS_Walk_Stop_F_L_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/03_Walk_F_R_45/AS_Walk_Loop_F_R_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/03_Walk_F_R_45/AS_Walk_Loop_F_R_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/03_Walk_F_R_45/AS_Walk_Start_F_R_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/03_Walk_F_R_45/AS_Walk_Start_F_R_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/03_Walk_F_R_45/AS_Walk_Stop_F_R_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/03_Walk_F_R_45/AS_Walk_Stop_F_R_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/04_Walk_F_L_90/AS_Walk_Loop_F_L_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/04_Walk_F_L_90/AS_Walk_Loop_F_L_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/04_Walk_F_L_90/AS_Walk_Start_F_L_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/04_Walk_F_L_90/AS_Walk_Start_F_L_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/04_Walk_F_L_90/AS_Walk_Stop_F_L_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/04_Walk_F_L_90/AS_Walk_Stop_F_L_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/05_Walk_F_R_90/AS_Walk_Loop_F_R_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/05_Walk_F_R_90/AS_Walk_Loop_F_R_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/05_Walk_F_R_90/AS_Walk_Start_F_R_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/05_Walk_F_R_90/AS_Walk_Start_F_R_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/05_Walk_F_R_90/AS_Walk_Stop_F_R_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/05_Walk_F_R_90/AS_Walk_Stop_F_R_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/06_Walk_B_180/AS_Walk_Loop_B_0_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/06_Walk_B_180/AS_Walk_Loop_B_0_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/06_Walk_B_180/AS_Walk_Start_B_0_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/06_Walk_B_180/AS_Walk_Start_B_0_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/06_Walk_B_180/AS_Walk_Stop_B_0_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/06_Walk_B_180/AS_Walk_Stop_B_0_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/07_Walk_B_L_45/AS_Walk_Loop_B_L_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/07_Walk_B_L_45/AS_Walk_Loop_B_L_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/07_Walk_B_L_45/AS_Walk_Start_B_L_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/07_Walk_B_L_45/AS_Walk_Start_B_L_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/07_Walk_B_L_45/AS_Walk_Stop_B_L_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/07_Walk_B_L_45/AS_Walk_Stop_B_L_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/08_Walk_B_R_45/AS_Walk_Loop_B_R_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/08_Walk_B_R_45/AS_Walk_Loop_B_R_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/08_Walk_B_R_45/AS_Walk_Start_B_R_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/08_Walk_B_R_45/AS_Walk_Start_B_R_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/08_Walk_B_R_45/AS_Walk_Stop_B_R_45_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/08_Walk_B_R_45/AS_Walk_Stop_B_R_45_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/09_Walk_B_L_90/AS_Walk_Loop_B_L_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/09_Walk_B_L_90/AS_Walk_Loop_B_L_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/09_Walk_B_L_90/AS_Walk_Start_B_L_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/09_Walk_B_L_90/AS_Walk_Start_B_L_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/09_Walk_B_L_90/AS_Walk_Stop_B_L_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/09_Walk_B_L_90/AS_Walk_Stop_B_L_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/10_Walk_B_R_90/AS_Walk_Loop_B_R_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/10_Walk_B_R_90/AS_Walk_Loop_B_R_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/10_Walk_B_R_90/AS_Walk_Start_B_R_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/10_Walk_B_R_90/AS_Walk_Start_B_R_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/10_Walk_B_R_90/AS_Walk_Stop_B_R_90_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/03_Walk/01_Walk/10_Walk_B_R_90/AS_Walk_Stop_B_R_90_Seq.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/RHAnimInstance.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/RHAnimInstance.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/RHAnimInstance.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/RHAnimInstance.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/05_Jump/01_Jump/01_Jump_0/AS_Jump_End_0_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/05_Jump/01_Jump/01_Jump_0/AS_Jump_End_0_Seq.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/05_Jump/01_Jump/01_Jump_0/AS_Jump_Loop_0_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/05_Jump/01_Jump/01_Jump_0/AS_Jump_Loop_0_Seq.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/05_Jump/01_Jump/01_Jump_0/AS_Jump_Start_0_Seq.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Great_Sword/Animations/Sequence1/05_Jump/01_Jump/01_Jump_0/AS_Jump_Start_0_Seq.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/RHCharacterBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/RHCharacterBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/RHCharacterBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/RHCharacterBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHAbilitySystemComponent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHAbilitySystemComponent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHAbilitySystemComponent.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHAbilitySystemComponent.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHGameplayAbilityBase.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHGameplayAbilityBase.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHGameplayAbilityBase.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHGameplayAbilityBase.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/RhythmHaven.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/RhythmHaven.Build.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Interface/RHCharacterActionInterface.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Interface/RHCharacterActionInterface.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,8 +77,12 @@
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/OnGroundComboWarp.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/RHMotionWarping.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/RHMotionWarping.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHHitParams.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHHitParams.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/WeaponHitBox.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/WeaponHitBox.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/AbilityName.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/AbilityName.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/CameraShakeType.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -237,7 +214,7 @@
       <workItem from="1756096692010" duration="14897000" />
       <workItem from="1756113302683" duration="2389000" />
       <workItem from="1756185262393" duration="26240000" />
-      <workItem from="1756276168278" duration="13228000" />
+      <workItem from="1756276168278" duration="22666000" />
     </task>
     <servers />
   </component>

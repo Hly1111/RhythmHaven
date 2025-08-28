@@ -33,7 +33,7 @@ private:
 	TArray<TSubclassOf<UGameplayEffect>> InitialGameEffects;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Abilities", BlueprintReadWrite, meta =(AllowPrivateAccess))
-	TArray<TSubclassOf<class URHGameplayAbilityBase>> InitialAbilities;
+	TArray<TSubclassOf<class URHBaseGameAbility>> InitialAbilities;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Gameplay Effects")
 	TSubclassOf<UGameplayEffect> PreInputEffect;

@@ -85,13 +85,6 @@ void URHTargeting::FindClosestEnemy(float DetectRange)
 			ChosenD2 = EnemyD2;
 		}
 	}
-
-#if WITH_EDITOR
-	if (WhichEnemyToUse())
-	{
-		DrawDebugSphere(GetWorld(), WhichEnemyToUse()->GetActorLocation(), 100.f, 12, FColor::White, false, 5.f, 0, 2.f);
-	}
-#endif
 }
 
 AActor* URHTargeting::GetCurrentEnemy() const

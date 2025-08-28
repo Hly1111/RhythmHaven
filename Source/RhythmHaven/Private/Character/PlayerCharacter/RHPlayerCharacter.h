@@ -6,12 +6,10 @@
 #include "GameplayTagContainer.h"
 #include "Character/RHCharacterBase.h"
 #include "InputActionValue.h"
-#include "Interface/RHCharacterActionInterface.h"
-#include "Interface/RHCharacterDataInterface.h"
 #include "RHPlayerCharacter.generated.h"
 
 UCLASS(Abstract)
-class RHYTHMHAVEN_API ARHPlayerCharacter : public ARHCharacterBase, public IRHCharacterActionInterface, public IRHCharacterDataInterface
+class RHYTHMHAVEN_API ARHPlayerCharacter : public ARHCharacterBase
 {
 	GENERATED_BODY()
 
@@ -32,6 +30,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Weapon")
 	TObjectPtr<USkeletalMeshComponent> WeaponComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon",  meta = (AllowPrivateAccess))
+	TObjectPtr<class UWeaponHitBox> WeaponBox;
 	
 	FVector GetLookForwardDirection() const;
 	FVector GetLookRightDirection() const;
@@ -112,6 +113,7 @@ private:
 	virtual void RecoverSpeed_Implementation() override;
 	void Accelerate(float Multiplier) const;
 	virtual void JumpUp_Implementation() override;
+	virtual void PlayAttackSound_Implementation(USoundBase* SoundToPlay, float StartTime) override;
 
 	/* TAGS */
 	static FGameplayTag GetMeleeAttackTag();

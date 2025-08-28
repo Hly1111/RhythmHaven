@@ -23,6 +23,21 @@ protected:
 	UPROPERTY()
 	TMap<EMotionWarpingType, TObjectPtr<UMotionWarpingStrategyBase>> MotionWarpingStrategyPool;
 
+	UPROPERTY(EditDefaultsOnly, Category = "Motion Warping Strategy")
+	TMap<EEnemyMotionWarpingType, TSubclassOf<class UMotionWarpingStrategyBase>> EnemyMotionWarpingStrategies;
+
+	UPROPERTY()
+	TMap<EEnemyMotionWarpingType, TObjectPtr<UMotionWarpingStrategyBase>> EnemyMotionWarpingStrategyPool;
+
 public:
 	UMotionWarpingStrategyBase* GetStrategy(EMotionWarpingType MotionWarpingType);
+	UMotionWarpingStrategyBase* GetStrategy(EEnemyMotionWarpingType MotionWarpingType);
+
+	void StartWarpingTimer(AActor* Target, float WarpInterpSpeed, float WarpInterpTime, FVector WarpLocation, FRotator WarpRotation);
+
+private:
+	FTimerHandle WarpingTimerHandle;
+
+	UFUNCTION()
+	void DoWarp(AActor* Target, float WarpInterpSpeed, float WarpInterpTime, const FVector& WarpLocation, const FRotator& WarpRotation);
 };

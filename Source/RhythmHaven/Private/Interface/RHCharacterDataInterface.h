@@ -37,4 +37,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
 	bool ReceiveLockOn(bool LockOn);
+	
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
+	bool IsMovingOnGround();
 };

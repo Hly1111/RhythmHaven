@@ -23,6 +23,7 @@ class URHAttributeSet : public UAttributeSet
 public:
 	ATTRIBUTE_ACCESSORS(URHAttributeSet, Health)
 	ATTRIBUTE_ACCESSORS(URHAttributeSet, MaxHealth)
+	ATTRIBUTE_ACCESSORS(URHAttributeSet, Damage)
 	
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Attribute")
@@ -30,4 +31,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Attribute")
 	FGameplayAttributeData MaxHealth;
+
+	UPROPERTY(VisibleAnywhere, Category = "Attribute")
+	FGameplayAttributeData Damage;
+
+	virtual void PostGameplayEffectExecute(const FGameplayEffectModCallbackData& Data) override;
 };
