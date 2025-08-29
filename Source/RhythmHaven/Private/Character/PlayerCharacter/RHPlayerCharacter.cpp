@@ -7,6 +7,7 @@
 #include "EnhancedInputSubsystems.h"
 #include "EnhancedInputComponent.h"
 #include "GameplayTagsManager.h"
+#include "KismetAnimationLibrary.h"
 #include "Components/BoxComponent.h"
 #include "Components/RHTargeting.h"
 #include "Components/WeaponHitBox.h"
@@ -375,6 +376,15 @@ void ARHPlayerCharacter::PlayAttackSound_Implementation(USoundBase* SoundToPlay,
 	if (IsValid(SoundToPlay))
 	{
 		UGameplayStatics::PlaySoundAtLocation(this, SoundToPlay, GetActorLocation(), 1,1, StartTime);
+	}
+}
+
+void ARHPlayerCharacter::ShakeCamera_Implementation(TSubclassOf<UCameraShakeBase> CameraShakeClass, float Scale)
+{
+	APlayerController* PlayerController = GetController<APlayerController>();
+	if (PlayerController && PlayerController->PlayerCameraManager)
+	{
+		PlayerController->PlayerCameraManager->StartCameraShake(CameraShakeClass, Scale);
 	}
 }
 

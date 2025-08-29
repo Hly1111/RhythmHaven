@@ -32,7 +32,7 @@ private:
 	TObjectPtr<USkeletalMeshComponent> WeaponComponent;
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Weapon",  meta = (AllowPrivateAccess))
-	TObjectPtr<class UWeaponHitBox> WeaponBox;
+	TObjectPtr<class UWeaponHitBox> WeaponBox; 
 	
 	FVector GetLookForwardDirection() const;
 	FVector GetLookRightDirection() const;
@@ -78,11 +78,6 @@ private:
 	virtual void Landed(const FHitResult& Hit) override;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
-	TObjectPtr<UInputAction> MeleeAttackAction;
-
-	void HandleMeleeAttack();
-
-	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
 	TObjectPtr<UInputAction> LockOnAction;
 
 	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
@@ -91,6 +86,11 @@ private:
 	void HandleLockOn();
 	void HandleLockOff();
 	void HandleLockOnSwitch();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
+	TObjectPtr<UInputAction> MeleeAttackAction;
+
+	void HandleMeleeAttack();
 	
 	/*Foot Step*/
 	void UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const;
@@ -114,6 +114,7 @@ private:
 	void Accelerate(float Multiplier) const;
 	virtual void JumpUp_Implementation() override;
 	virtual void PlayAttackSound_Implementation(USoundBase* SoundToPlay, float StartTime) override;
+	virtual void ShakeCamera_Implementation(TSubclassOf<class UCameraShakeBase> CameraShakeClass, float Scale) override;
 
 	/* TAGS */
 	static FGameplayTag GetMeleeAttackTag();

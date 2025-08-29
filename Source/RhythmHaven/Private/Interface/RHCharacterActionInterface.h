@@ -47,4 +47,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
 	bool SetMovementMode(EMovementMode Mode);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
+	void ShakeCamera(TSubclassOf<class UCameraShakeBase> CameraShakeClass, float Scale);
 };

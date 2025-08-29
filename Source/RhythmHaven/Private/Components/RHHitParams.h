@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameplayTagContainer.h"
+#include "Enum/CameraShakeType.h"
 #include "Enum/MotionWarpingType.h"
 #include "RHHitParams.generated.h"
 
@@ -50,4 +51,10 @@ struct FRHHitParams
 
 	UPROPERTY(BlueprintReadOnly)
 	float EnemyInterpTimeLength = 0.f;
+
+	UPROPERTY(BlueprintReadOnly)
+	bool bPlayCameraShake;
+
+	UPROPERTY(BlueprintReadOnly)
+	ECameraShakeType CameraShakeType;
 };

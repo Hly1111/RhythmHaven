@@ -18,4 +18,6 @@ void URHHitPayload::PassInData(const FRHHitParams& HitData)
 	EnemyMovementModeWhenHit = HitData.EnemyMovementModeWhenHit;
 	EnemyInterpSpeed = HitData.EnemyInterpSpeed;
 	EnemyInterpTimeLength = HitData.EnemyInterpTimeLength;
+	bPlayCameraShake = HitData.bPlayCameraShake;
+	CameraShakeType	= HitData.CameraShakeType;
 }

@@ -11,6 +11,7 @@
 #include "Character/RHCharacterBase.h"
 #include "Components/MotionWarping/MotionWarpingStrategyBase.h"
 #include "Components/MotionWarping/RHMotionWarping.h"
+#include "Kismet/GameplayStatics.h"
 
 void URHGetHitAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
                                        const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
@@ -58,6 +59,30 @@ void URHGetHitAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 				SourceASC->ExecuteGameplayCue(UGameplayTagsManager::Get().RequestGameplayTag(FName("GameplayCue.Hit.Sound")), GCParams);
 			}
 
+			//摄像机震动
+			if (Payload->bPlayCameraShake)
+			{
+				FGameplayCueParameters GCParams;
+				GCParams.EffectContext = Ctx;
+				GCParams.Instigator = AttackInstigator;
+				if (Payload->CameraShakeType == ECameraShakeType::Light)
+				{
+					SourceASC->ExecuteGameplayCue(UGameplayTagsManager::Get().RequestGameplayTag(FName("GameplayCue.Hit.CameraShake.Light")), GCParams);
+				}
+				else if (Payload->CameraShakeType == ECameraShakeType::Heavy)
+				{
+					SourceASC->ExecuteGameplayCue(UGameplayTagsManager::Get().RequestGameplayTag(FName("GameplayCue.Hit.CameraShake.Heavy")), GCParams);
+				}
+			}
+			//顿帧
+
+			UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.2f);
+			FTimerHandle TimerHandle;
+			GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
+			{
+				UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 1.0f);
+			}, 0.01f, false); 
+			
 			//MotionWarping
 			if (Payload->bUseMotionWarping)
 			{

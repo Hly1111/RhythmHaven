@@ -7,8 +7,6 @@
 UENUM(BlueprintType)
 enum class ECameraShakeType : uint8
 {
-	None,
 	Light,
-	Medium,
 	Heavy
 };

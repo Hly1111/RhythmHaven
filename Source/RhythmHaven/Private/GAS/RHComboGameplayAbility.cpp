@@ -43,7 +43,9 @@ void URHComboGameplayAbility::ActivateAbility(const FGameplayAbilitySpecHandle H
 		ActionData->EnemyWarpingOffsetZ,
 		ActionData->EnemyMovementModeWhenHit,
 		ActionData->EnemyInterpSpeed,
-		ActionData->EnemyInterpTimeLength
+		ActionData->EnemyInterpTimeLength,
+		ActionData->bPlayCameraShake,
+		ActionData->CameraShakeType
 	};
 	TryHitBoxSetUp();
 	

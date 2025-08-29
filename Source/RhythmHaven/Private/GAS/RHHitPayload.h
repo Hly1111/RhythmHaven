@@ -56,6 +56,12 @@ public:
 	UPROPERTY(BlueprintReadOnly)
 	float EnemyInterpTimeLength;
 
+	UPROPERTY(BlueprintReadOnly)
+	bool bPlayCameraShake;
+
+	UPROPERTY(BlueprintReadOnly)
+	ECameraShakeType CameraShakeType;
+
 	UFUNCTION()
 	void PassInData(const FRHHitParams& HitData);
 };
