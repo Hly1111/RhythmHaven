@@ -22,9 +22,6 @@ public:
 	
 	UPROPERTY(BlueprintReadOnly)
 	float Damage = 0.f;
-
-	UPROPERTY(BlueprintReadOnly)
-	TObjectPtr<class USoundBase> HitSound = nullptr;
 	
 	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<class UAnimMontage> HitMontage = nullptr;
@@ -55,12 +52,6 @@ public:
 
 	UPROPERTY(BlueprintReadOnly)
 	float EnemyInterpTimeLength;
-
-	UPROPERTY(BlueprintReadOnly)
-	bool bPlayCameraShake;
-
-	UPROPERTY(BlueprintReadOnly)
-	ECameraShakeType CameraShakeType;
 
 	UFUNCTION()
 	void PassInData(const FRHHitParams& HitData);

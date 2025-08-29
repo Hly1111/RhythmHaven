@@ -2,6 +2,8 @@
 
 
 #include "RHComboGameplayAbility.h"
+
+#include "AbilitySystemBlueprintLibrary.h"
 #include "GameplayAbilityData.h"
 #include "GameplayTagsManager.h"
 #include "RHAbilitySystemComponent.h"
@@ -13,10 +15,11 @@
 #include "Components/MotionWarping/MotionWarpingData.h"
 #include "Components/MotionWarping/MotionWarpingStrategyBase.h"
 #include "Components/MotionWarping/RHMotionWarping.h"
+#include "Kismet/GameplayStatics.h"
 
 void URHComboGameplayAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
-                                             const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
-                                             const FGameplayEventData* TriggerEventData)
+                                              const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
+                                              const FGameplayEventData* TriggerEventData)
 {
 	Super::ActivateAbility(Handle, ActorInfo, ActivationInfo, TriggerEventData);
 	
@@ -33,7 +36,6 @@ void URHComboGameplayAbility::ActivateAbility(const FGameplayAbilitySpecHandle H
 	{
 		ActionData->GameplayEffectToApply,
 		ActionData->Damage,
-		ActionData->EnemyHitSound,
 		ActionData->EnemyHitMontage,
 		ActionData->EnemyUseMotionWarping,
 		ActionData->EnemyMotionWarpingType,
@@ -43,14 +45,13 @@ void URHComboGameplayAbility::ActivateAbility(const FGameplayAbilitySpecHandle H
 		ActionData->EnemyWarpingOffsetZ,
 		ActionData->EnemyMovementModeWhenHit,
 		ActionData->EnemyInterpSpeed,
-		ActionData->EnemyInterpTimeLength,
-		ActionData->bPlayCameraShake,
-		ActionData->CameraShakeType
+		ActionData->EnemyInterpTimeLength
 	};
 	TryHitBoxSetUp();
 	
 	TryMotionWarping();
 	TryPlayMontage();
+	WaitForHit();
 }
 
 void URHComboGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle,
@@ -58,6 +59,7 @@ void URHComboGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle
 	bool bReplicateEndAbility, bool bWasCancelled)
 {
 	Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
+	bHasHitTriggered = false;
 	SendGameplayEvent(UGameplayTagsManager::Get().RequestGameplayTag("Event.DisableHitBox"), FGameplayEventData());
 }
 
@@ -110,6 +112,13 @@ void URHComboGameplayAbility::TryPlayMontage()
 	}
 }
 
+void URHComboGameplayAbility::WaitForHit()
+{
+	auto* WaitForHitTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(this, UGameplayTagsManager::Get().RequestGameplayTag("Attack.Hit"));
+	WaitForHitTask->EventReceived.AddDynamic(this, &URHComboGameplayAbility::HandleOnHit);
+	WaitForHitTask->ReadyForActivation();
+}
+
 void URHComboGameplayAbility::OnHitWindowOpen(FGameplayEventData Data)
 {
 	AActor* Owner = GetAvatarActorFromActorInfo();
@@ -118,6 +127,7 @@ void URHComboGameplayAbility::OnHitWindowOpen(FGameplayEventData Data)
 	{
 		Hitbox->ArmHitbox(CurrentHitParams);
 	}
+	++HitTimer;
 }
 
 void URHComboGameplayAbility::OnHitWindowClose(FGameplayEventData Data)
@@ -135,4 +145,55 @@ void URHComboGameplayAbility::PlayAttackSound(FGameplayEventData Data)
 	AActor* Owner = GetAvatarActorFromActorInfo();
 	if (!Owner) return;
 	IRHCharacterActionInterface::Execute_PlayAttackSound(Owner, ActionData->AttackSound, ActionData->AttackAudioStartTime);
+}
+
+void URHComboGameplayAbility::HandleOnHit(FGameplayEventData Data)
+{
+	AActor* EnemyActor = const_cast<AActor*>(Data.Target.Get());
+	UAbilitySystemComponent* AbilitySystemComponent = AbilityOwner->GetAbilitySystemComponent();
+	//伤害
+	FGameplayEffectContextHandle Ctx = AbilitySystemComponent->MakeEffectContext();
+	Ctx.AddInstigator(AbilityOwner,AbilityOwner);
+	FGameplayEffectSpecHandle Spec = AbilitySystemComponent->MakeOutgoingSpec(ActionData->GameplayEffectToApply, 1.f, Ctx);
+	if (Spec.IsValid())
+	{
+		UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(Spec, UGameplayTagsManager::Get().RequestGameplayTag("Data.Damage"), ActionData->Damage);
+		AbilitySystemComponent->ApplyGameplayEffectSpecToTarget(*Spec.Data.Get(), UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(EnemyActor));
+	}
+	
+	//音效
+	if (ActionData->EnemyHitSound)
+	{
+		FGameplayCueParameters GCParams;
+		GCParams.SourceObject  = ActionData->EnemyHitSound;
+		AbilityOwner->GetAbilitySystemComponent()->ExecuteGameplayCue(UGameplayTagsManager::Get().RequestGameplayTag(FName("GameplayCue.Hit.Sound")), GCParams);
+	}
+
+	if (bHasHitTriggered) return;
+	//摄像机震动
+	if (ActionData->bPlayCameraShake)
+	{
+		FGameplayCueParameters GCParams;
+		GCParams.Instigator = AbilityOwner;
+		if (ActionData->CameraShakeType == ECameraShakeType::Light)
+		{
+			AbilityOwner->GetAbilitySystemComponent()->ExecuteGameplayCue(UGameplayTagsManager::Get().RequestGameplayTag(FName("GameplayCue.Hit.CameraShake.Light")), GCParams);
+		}
+		else if (ActionData->CameraShakeType == ECameraShakeType::Heavy)
+		{
+			AbilityOwner->GetAbilitySystemComponent()->ExecuteGameplayCue(UGameplayTagsManager::Get().RequestGameplayTag(FName("GameplayCue.Hit.CameraShake.Heavy")), GCParams);
+		}
+	}
+	//顿帧
+
+	if (ActionData->bUseTimeDilation)
+	{
+		UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.2f);
+		FTimerHandle TimerHandle;
+		GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
+		{
+			UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 1.0f);
+		}, ActionData->TimeDilationDuration, false);
+	}
+	bHasHitTriggered = true;
 }

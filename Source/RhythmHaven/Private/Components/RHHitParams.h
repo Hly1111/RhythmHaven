@@ -20,9 +20,6 @@ struct FRHHitParams
 	float Damage = 0.f;
 
 	UPROPERTY(BlueprintReadOnly)
-	TObjectPtr<USoundBase> EnemyHitSound = nullptr;
-
-	UPROPERTY(BlueprintReadOnly)
 	TObjectPtr<UAnimMontage> EnemyHitMontage = nullptr;
 
 	UPROPERTY(BlueprintReadOnly)
@@ -51,10 +48,4 @@ struct FRHHitParams
 
 	UPROPERTY(BlueprintReadOnly)
 	float EnemyInterpTimeLength = 0.f;
-
-	UPROPERTY(BlueprintReadOnly)
-	bool bPlayCameraShake;
-
-	UPROPERTY(BlueprintReadOnly)
-	ECameraShakeType CameraShakeType;
 };

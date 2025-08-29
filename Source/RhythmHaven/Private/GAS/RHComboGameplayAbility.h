@@ -32,6 +32,10 @@ private:
 	void TryHitBoxSetUp();
 	void TryMotionWarping();
 	void TryPlayMontage();
+	void WaitForHit();
+
+	bool bHasHitTriggered = false;
+	int HitTimer = 0;
 
 	FVector WarpingLocation;
 	FRotator WarpingRotation;
@@ -47,4 +51,7 @@ private:
 
 	UFUNCTION()
 	void PlayAttackSound(FGameplayEventData Data);
+
+	UFUNCTION()
+	void HandleOnHit(FGameplayEventData Payload);
 };

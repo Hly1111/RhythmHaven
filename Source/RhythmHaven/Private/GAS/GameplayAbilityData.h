@@ -97,4 +97,10 @@ public:
 	
 	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
 	float Damage;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
+	bool bUseTimeDilation;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Action Data")
+	float TimeDilationDuration;
 };

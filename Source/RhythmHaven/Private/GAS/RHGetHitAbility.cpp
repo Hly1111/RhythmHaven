@@ -40,48 +40,6 @@ void URHGetHitAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 		AttackInstigator = const_cast<AActor*>(TriggerEventData->Instigator.Get());
 		if (UAbilitySystemComponent* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(AttackInstigator))
 		{
-			//伤害
-			FGameplayEffectContextHandle Ctx = SourceASC->MakeEffectContext();
-			Ctx.AddInstigator(AttackInstigator,AttackInstigator);
-			FGameplayEffectSpecHandle Spec = SourceASC->MakeOutgoingSpec(Payload->EffectClass, 1.f, Ctx);
-			if (Spec.IsValid())
-			{
-				UAbilitySystemBlueprintLibrary::AssignTagSetByCallerMagnitude(Spec, UGameplayTagsManager::Get().RequestGameplayTag("Data.Damage"), Payload->Damage);
-				SourceASC->ApplyGameplayEffectSpecToTarget(*Spec.Data.Get(), TargetASC);
-			}
-
-			//音效
-			if (Payload->HitSound)
-			{
-				FGameplayCueParameters GCParams;
-				GCParams.EffectContext = Ctx;
-				GCParams.SourceObject  = Payload->HitSound;
-				SourceASC->ExecuteGameplayCue(UGameplayTagsManager::Get().RequestGameplayTag(FName("GameplayCue.Hit.Sound")), GCParams);
-			}
-
-			//摄像机震动
-			if (Payload->bPlayCameraShake)
-			{
-				FGameplayCueParameters GCParams;
-				GCParams.EffectContext = Ctx;
-				GCParams.Instigator = AttackInstigator;
-				if (Payload->CameraShakeType == ECameraShakeType::Light)
-				{
-					SourceASC->ExecuteGameplayCue(UGameplayTagsManager::Get().RequestGameplayTag(FName("GameplayCue.Hit.CameraShake.Light")), GCParams);
-				}
-				else if (Payload->CameraShakeType == ECameraShakeType::Heavy)
-				{
-					SourceASC->ExecuteGameplayCue(UGameplayTagsManager::Get().RequestGameplayTag(FName("GameplayCue.Hit.CameraShake.Heavy")), GCParams);
-				}
-			}
-			//顿帧
-
-			UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 0.2f);
-			FTimerHandle TimerHandle;
-			GetWorld()->GetTimerManager().SetTimer(TimerHandle, [this]()
-			{
-				UGameplayStatics::SetGlobalTimeDilation(GetWorld(), 1.0f);
-			}, 0.01f, false); 
 			
 			//MotionWarping
 			if (Payload->bUseMotionWarping)

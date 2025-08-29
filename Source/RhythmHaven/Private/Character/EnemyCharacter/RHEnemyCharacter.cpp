@@ -47,6 +47,7 @@ void ARHEnemyCharacter::EnemyReceiveDamage_Implementation(FRHHitParams HitData,
 	Evt.Target = this;
 	Evt.OptionalObject = Payload;
 	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(this, Evt.EventTag, Evt);
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(AttackInstigator, Evt.EventTag, Evt);
 }
 
 bool ARHEnemyCharacter::SetMovementMode_Implementation(EMovementMode Mode)
