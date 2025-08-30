@@ -152,7 +152,7 @@ FVector ARHPlayerCharacter::GetFaceForwardDirection() const
 
 void ARHPlayerCharacter::CalculateCameraAngularDifference()
 {
-	if(GetCharacterMovement()->GetLastInputVector().Length()>0 && !bIsLockedOn)
+	if(GetCharacterMovement()->GetCurrentAcceleration().Length()>0 && !bIsLockedOn)
 	{
 		YawDifference = FMath::FindDeltaAngleDegrees(GetBaseAimRotation().Yaw, GetActorRotation().Yaw);
 		float OutValue = FMath::GetMappedRangeValueClamped(TRange<float>(55.f, 180.f), TRange<float>(0.2f, 0.6f), FMath::Abs(YawDifference));
@@ -188,6 +188,12 @@ void ARHPlayerCharacter::HandleMoveAction(const FInputActionValue& Value)
 	const float ScaleValueY = GetCharacterMovement()->IsMovingOnGround()? MovementValue.Y : MovementValue.Y * 1.2f;
 	AddMovementInput(GetFaceForwardDirection(), ScaleValueY);
 	AddMovementInput(GetLookRightDirection(), ScaleValueX);
+
+	if (GetAbilitySystemComponent()->HasAnyMatchingGameplayTags(FGameplayTagContainer(UGameplayTagsManager::Get().RequestGameplayTag(FName("Window.CanInterrupt")))))
+	{
+		GetAbilitySystemComponent()->RemoveLooseGameplayTag(UGameplayTagsManager::Get().RequestGameplayTag(FName("Window.CanInterrupt")));
+		StopAnimMontage(GetMesh()->GetAnimInstance()->GetCurrentActiveMontage());
+	}
 }
 
 void ARHPlayerCharacter::HandleLookAction(const FInputActionValue& Value)
