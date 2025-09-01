@@ -8,13 +8,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="da5a4d19-c396-47ee-ab58-c797276e7e21" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RhythmComponent.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RhythmComponent.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RhythmSubsystem.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RhythmSubsystem.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RhythmTypes.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RhythmTypes.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.RhythmHaven.dir/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.RhythmHaven.dir/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Config/DefaultEngine.ini" beforeDir="false" afterPath="$PROJECT_DIR$/Config/DefaultEngine.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Data/RH_ActionData.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/Data/RH_ActionData.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_01_Seq_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_01_Seq_Montage.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_02_Seq_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_02_Seq_Montage.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_03_Seq_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_03_Seq_Montage.uasset" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_04_Seq_Montage.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Blueprints/GAS/GameplayAbility/Montages/AS_Combo_Attack_01_04_Seq_Montage.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Maps/OpenMap.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Maps/OpenMap.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/00RhythmHaven/Maps/RhythmLevel_01.umap" beforeDir="false" afterPath="$PROJECT_DIR$/Content/00RhythmHaven/Maps/RhythmLevel_01.umap" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Audio/SoundWaves/04_I_Got_This.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Audio/SoundWaves/04_I_Got_This.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Audio/SoundWaves/FootStep.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Audio/SoundWaves/FootStep.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/VFX_PackVol2/Materials/M_Const.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/VFX_PackVol2/Materials/M_Const.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/VFX_PackVol2/Materials/M_ExplosionBlob.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/VFX_PackVol2/Materials/M_ExplosionBlob.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Content/Vefects/Easy_Shockwaves_VFX/Demo/Scene/Materials/MM_Vefects_Grid.uasset" beforeDir="false" afterPath="$PROJECT_DIR$/Content/Vefects/Easy_Shockwaves_VFX/Demo/Scene/Materials/MM_Vefects_Grid.uasset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RhythmHaven.uproject.DotSettings.user" beforeDir="false" afterPath="$PROJECT_DIR$/RhythmHaven.uproject.DotSettings.user" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RHGameMode.h" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RHGameMode.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/RhythmHaven/RhythmHaven.Build.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Source/RhythmHaven/RhythmHaven.Build.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,11 +41,14 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="cidr-memory-view://3" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Plugins/Animation/MotionWarping/Source/MotionWarping/Public/MotionWarpingComponent.h" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/AVEncoder/Private/Decoders/vdecmpeg4/M4XCmdSingleThread.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/AudioMixer/Private/Quartz/AudioMixerClockHandle.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Core/Private/Containers/ContainersTest.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Core/Public/Math/UnrealMathUtility.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Core/Public/Templates/AreTypesEqual.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Core/Public/UObject/WeakObjectPtrTemplates.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/CoreUObject/Private/UObject/UObjectGlobals.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/CoreUObject/Public/UObject/ObjectPtr.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/../../../Epic Games/Editors/UE_5.5/Engine/Source/Runtime/Engine/Classes/Engine/EngineTypes.h" root0="FORCE_HIGHLIGHTING" />
@@ -45,7 +61,7 @@
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Animation/AnimNotify/AN_JumpUp.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Character/EnemyCharacter/RHEnemyCharacter.h" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.cpp" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Character/PlayerCharacter/RHPlayerCharacter.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/MotionWarpingStrategyBase.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/MotionWarpingStrategyBase.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/MotionWarping/OnGroundComboWarp.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -56,6 +72,8 @@
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHHitParams.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RHTargeting.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RhythmComponent.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/RhythmComponent.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/WeaponHitBox.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Components/WeaponHitBox.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/AbilityName.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -66,6 +84,10 @@
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/MotionWarpingType.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/OwnerType.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Enum/OwnerType.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RhythmSubsystem.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RhythmSubsystem.h" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RhythmTypes.cpp" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/Framework/RhythmTypes.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/GameplayAbilityData.cpp" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/GameplayAbilityData.h" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Source/RhythmHaven/Private/GAS/RHAbilitySystemComponent.cpp" root0="FORCE_HIGHLIGHTING" />
@@ -86,22 +108,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;Uproject.RhythmHaven.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ModuleVcsDetector.initialDetectionPerformed": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "Uproject.RhythmHaven.executor": "Run",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="RhythmHaven" type="Uproject" factoryName="rider.uproject">
       <configuration_1 setup="1">
@@ -194,7 +216,8 @@
       <workItem from="1756440174597" duration="4065000" />
       <workItem from="1756469889031" duration="5835000" />
       <workItem from="1756477142585" duration="3430000" />
-      <workItem from="1756544541551" duration="1368000" />
+      <workItem from="1756544541551" duration="4057000" />
+      <workItem from="1756709646583" duration="27116000" />
     </task>
     <servers />
   </component>

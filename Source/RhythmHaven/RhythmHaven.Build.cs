@@ -10,7 +10,7 @@ public class RhythmHaven : ModuleRules
 	
 		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore" });
 
-		PrivateDependencyModuleNames.AddRange(new string[] { "EnhancedInput", "AnimGraphRuntime", "GameplayTasks", "GameplayTags", "GameplayAbilities", "MotionWarping" });
+		PrivateDependencyModuleNames.AddRange(new string[] { "EnhancedInput", "AnimGraphRuntime", "GameplayTasks", "GameplayTags", "GameplayAbilities", "MotionWarping", "AudioMixer","AudioExtensions", "SignalProcessing"});
 
 		// Uncomment if you are using Slate UI
 		// PrivateDependencyModuleNames.AddRange(new string[] { "Slate", "SlateCore" });

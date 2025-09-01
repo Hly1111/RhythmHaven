@@ -13,5 +13,4 @@ UCLASS(Abstract)
 class ARHGameMode : public AGameModeBase
 {
 	GENERATED_BODY()
-	
 };

@@ -371,7 +371,7 @@ void ARHPlayerCharacter::Accelerate(float Multiplier) const
 void ARHPlayerCharacter::JumpUp_Implementation()
 {
 	GetCharacterMovement()->MaxWalkSpeed = 800.f;
-	GetCharacterMovement()->JumpZVelocity = 4200.f;
+	GetCharacterMovement()->JumpZVelocity = 3200.f;
 	GetCharacterMovement()->GravityScale = 12.f;
 	GetCharacterMovement()->MaxAcceleration = 3000.f;
 	Jump();
