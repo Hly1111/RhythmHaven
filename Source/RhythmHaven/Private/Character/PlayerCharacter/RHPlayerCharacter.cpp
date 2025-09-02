@@ -1,6 +1,8 @@
 
 
 #include "RHPlayerCharacter.h"
+
+#include "AbilitySystemBlueprintLibrary.h"
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
@@ -12,6 +14,7 @@
 #include "Components/RHTargeting.h"
 #include "Components/WeaponHitBox.h"
 #include "GAS/RHAbilitySystemComponent.h"
+#include "GAS/RHHitPayload.h"
 #include "Kismet/GameplayStatics.h"
 #include "Interface/RHCharacterDataInterface.h"
 #include "Kismet/KismetMathLibrary.h"
@@ -392,6 +395,29 @@ void ARHPlayerCharacter::ShakeCamera_Implementation(TSubclassOf<UCameraShakeBase
 	{
 		PlayerController->PlayerCameraManager->StartCameraShake(CameraShakeClass, Scale);
 	}
+}
+
+void ARHPlayerCharacter::EnemyReceiveDamage_Implementation(FRHHitParams HitData, ACharacter* AttackInstigator)
+{
+	//伤害Effect
+	UAbilitySystemComponent* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(AttackInstigator);
+	if (!SourceASC) return;
+
+	URHHitPayload* Payload =  NewObject<URHHitPayload>(GetTransientPackage());
+	Payload->PassInData(HitData);
+
+	FGameplayEventData Evt;
+	Evt.EventTag = UGameplayTagsManager::Get().RequestGameplayTag(FName("Attack.HitPlayer"));
+	Evt.Instigator = AttackInstigator;
+	Evt.Target = this;
+	Evt.OptionalObject = Payload;
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(this, Evt.EventTag, Evt);
+	UAbilitySystemBlueprintLibrary::SendGameplayEventToActor(AttackInstigator, Evt.EventTag, Evt);
+}
+
+bool ARHPlayerCharacter::IsMovingOnGround_Implementation()
+{
+	return GetCharacterMovement()->IsMovingOnGround();
 }
 
 FGameplayTag ARHPlayerCharacter::GetMeleeAttackTag()

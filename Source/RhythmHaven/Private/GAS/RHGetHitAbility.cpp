@@ -37,6 +37,7 @@ void URHGetHitAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 
 	if (const URHHitPayload* Payload = TriggerEventData ? Cast<URHHitPayload>(TriggerEventData->OptionalObject) : nullptr)
 	{
+		AbilityOwner->GetAbilitySystemComponent()->AddLooseGameplayTag(UGameplayTagsManager::Get().RequestGameplayTag(FName("GetHit")));
 		AttackInstigator = const_cast<AActor*>(TriggerEventData->Instigator.Get());
 		if (UAbilitySystemComponent* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(AttackInstigator))
 		{
@@ -65,8 +66,10 @@ void URHGetHitAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 			UAbilityTask_PlayMontageAndWait* PlayMontageTask = UAbilityTask_PlayMontageAndWait::CreatePlayMontageAndWaitProxy(this, NAME_None, Payload->HitMontage);
 			PlayMontageTask->OnCompleted.AddDynamic(this, &URHGetHitAbility::K2_EndAbility);
 			PlayMontageTask->OnInterrupted.AddDynamic(this, &URHGetHitAbility::K2_EndAbility);
-			PlayMontageTask->OnBlendedIn.AddDynamic(this, &URHGetHitAbility::K2_EndAbility);
-			PlayMontageTask->OnBlendOut.AddDynamic(this, &URHGetHitAbility::K2_EndAbility);
+			if (AbilityOwner->ActorHasTag("Enemy"))
+			{
+				PlayMontageTask->OnBlendOut.AddDynamic(this, &URHGetHitAbility::K2_EndAbility);
+			}
 			PlayMontageTask->ReadyForActivation();
 		}
 	}
@@ -76,5 +79,6 @@ void URHGetHitAbility::ActivateAbility(const FGameplayAbilitySpecHandle Handle,
 void URHGetHitAbility::EndAbility(const FGameplayAbilitySpecHandle Handle, const FGameplayAbilityActorInfo* ActorInfo,
 	const FGameplayAbilityActivationInfo ActivationInfo, bool bReplicateEndAbility, bool bWasCancelled)
 {
+	AbilityOwner->GetAbilitySystemComponent()->RemoveLooseGameplayTag(UGameplayTagsManager::Get().RequestGameplayTag(FName("GetHit")));
 	Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
 }

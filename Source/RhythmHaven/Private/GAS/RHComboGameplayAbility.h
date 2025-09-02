@@ -35,7 +35,6 @@ private:
 	void WaitForHit();
 
 	bool bHasHitTriggered = false;
-	int HitTimer = 0;
 
 	FVector WarpingLocation;
 	FRotator WarpingRotation;

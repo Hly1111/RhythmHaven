@@ -40,4 +40,7 @@ public:
 	
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
 	bool IsMovingOnGround();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
+	bool IsHit();
 };

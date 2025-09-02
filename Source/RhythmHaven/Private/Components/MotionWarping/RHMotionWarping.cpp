@@ -61,22 +61,28 @@ UMotionWarpingStrategyBase* URHMotionWarping::GetStrategy(EEnemyMotionWarpingTyp
 void URHMotionWarping::StartWarpingTimer(AActor* Target, float WarpInterpSpeed, float WarpInterpTime, FVector WarpLocation, FRotator WarpRotation)
 {
 	FTimerDelegate TimerDelegate;
+	WarpingElapsed = 0.f;
 	TimerDelegate.BindUFunction(this, FName("DoWarp"), Target, WarpInterpSpeed, WarpInterpTime, WarpLocation,WarpRotation);
 	GetWorld()->GetTimerManager().SetTimer(WarpingTimerHandle, TimerDelegate, 0.01f,true);
 }
 
 void URHMotionWarping::DoWarp(AActor* Target, float WarpInterpSpeed, float WarpInterpTime, const FVector& WarpLocation, const FRotator& WarpRotation)
 {
+	if (!IsValid(Target) || !GetWorld())
+	{
+		GetWorld()->GetTimerManager().ClearTimer(WarpingTimerHandle);
+		return;
+	}
 	FVector Location = FMath::VInterpTo(Target->GetActorLocation(), WarpLocation, GetWorld()->GetDeltaSeconds(),WarpInterpSpeed);
 	Target->SetActorLocation(Location);
-	float WarpingTimer = 0;
 	float Yaw = FMath::RInterpTo(Target->GetActorRotation(), WarpRotation, GetWorld()->GetDeltaSeconds(), 10.f).Yaw;
 	FRotator Rotation = FRotator(Target->GetActorRotation().Pitch, Yaw, Target->GetActorRotation().Roll);
 	Target->SetActorRotation(Rotation);
-	WarpingTimer += GetWorld()->GetDeltaSeconds();
-	if (WarpingTimer >= WarpInterpTime)
+	WarpingElapsed += GetWorld()->GetDeltaSeconds();
+	if (WarpingElapsed >= WarpInterpTime)
 	{
-		WarpingTimerHandle.Invalidate();
+		GetWorld()->GetTimerManager().ClearTimer(WarpingTimerHandle);
+		WarpingElapsed = 0.f;
 	}
 }
 

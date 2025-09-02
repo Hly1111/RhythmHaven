@@ -7,6 +7,7 @@
 #include "GameplayTagsManager.h"
 #include "GameFramework/CharacterMovementComponent.h"
 #include "GAS/RHHitPayload.h"
+#include "Kismet/GameplayStatics.h"
 
 
 // Sets default values
@@ -59,5 +60,23 @@ bool ARHEnemyCharacter::SetMovementMode_Implementation(EMovementMode Mode)
 bool ARHEnemyCharacter::IsMovingOnGround_Implementation()
 {
 	return GetCharacterMovement()->IsMovingOnGround();
+}
+
+void ARHEnemyCharacter::EnemyAttackPlayer_Implementation()
+{
+	
+}
+
+void ARHEnemyCharacter::PlayAttackSound_Implementation(USoundBase* SoundToPlay, float StartTime)
+{
+	if (IsValid(SoundToPlay))
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, SoundToPlay, GetActorLocation(), 1,1, StartTime);
+	}
+}
+
+bool ARHEnemyCharacter::IsHit_Implementation()
+{
+	return GetAbilitySystemComponent()->HasMatchingGameplayTag(UGameplayTagsManager::Get().RequestGameplayTag(FName("GetHit")));
 }
 

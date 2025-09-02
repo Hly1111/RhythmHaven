@@ -115,6 +115,8 @@ private:
 	virtual void JumpUp_Implementation() override;
 	virtual void PlayAttackSound_Implementation(USoundBase* SoundToPlay, float StartTime) override;
 	virtual void ShakeCamera_Implementation(TSubclassOf<class UCameraShakeBase> CameraShakeClass, float Scale) override;
+	virtual void EnemyReceiveDamage_Implementation(FRHHitParams HitData, ACharacter* AttackInstigator) override;
+	virtual bool IsMovingOnGround_Implementation() override;
 
 	/* TAGS */
 	static FGameplayTag GetMeleeAttackTag();

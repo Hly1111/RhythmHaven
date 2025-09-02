@@ -58,9 +58,9 @@ void URHComboGameplayAbility::EndAbility(const FGameplayAbilitySpecHandle Handle
 	const FGameplayAbilityActorInfo* ActorInfo, const FGameplayAbilityActivationInfo ActivationInfo,
 	bool bReplicateEndAbility, bool bWasCancelled)
 {
-	Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
 	bHasHitTriggered = false;
 	SendGameplayEvent(UGameplayTagsManager::Get().RequestGameplayTag("Event.DisableHitBox"), FGameplayEventData());
+	Super::EndAbility(Handle, ActorInfo, ActivationInfo, bReplicateEndAbility, bWasCancelled);
 }
 
 void URHComboGameplayAbility::TryHitBoxSetUp()
@@ -114,27 +114,33 @@ void URHComboGameplayAbility::TryPlayMontage()
 
 void URHComboGameplayAbility::WaitForHit()
 {
-	auto* WaitForHitTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(this, UGameplayTagsManager::Get().RequestGameplayTag("Attack.Hit"));
-	WaitForHitTask->EventReceived.AddDynamic(this, &URHComboGameplayAbility::HandleOnHit);
-	WaitForHitTask->ReadyForActivation();
+	if (AbilityOwner->ActorHasTag("Player"))
+	{
+		auto* WaitForHitTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(this, UGameplayTagsManager::Get().RequestGameplayTag("Attack.Hit"));
+		WaitForHitTask->EventReceived.AddDynamic(this, &URHComboGameplayAbility::HandleOnHit);
+		WaitForHitTask->ReadyForActivation();
+	}
+	else if (AbilityOwner->ActorHasTag("Enemy"))
+	{
+		auto* WaitForHitTask = UAbilityTask_WaitGameplayEvent::WaitGameplayEvent(this, UGameplayTagsManager::Get().RequestGameplayTag("Attack.HitPlayer"));
+		WaitForHitTask->EventReceived.AddDynamic(this, &URHComboGameplayAbility::HandleOnHit);
+		WaitForHitTask->ReadyForActivation();
+	}
 }
 
 void URHComboGameplayAbility::OnHitWindowOpen(FGameplayEventData Data)
 {
-	AActor* Owner = GetAvatarActorFromActorInfo();
-	if (!Owner) return;
-	if (UWeaponHitBox* Hitbox = Owner->FindComponentByClass<UWeaponHitBox>())
+	if (!AbilityOwner) return;
+	if (UWeaponHitBox* Hitbox = AbilityOwner->FindComponentByClass<UWeaponHitBox>())
 	{
 		Hitbox->ArmHitbox(CurrentHitParams);
 	}
-	++HitTimer;
 }
 
 void URHComboGameplayAbility::OnHitWindowClose(FGameplayEventData Data)
 {
-	AActor* Owner = GetAvatarActorFromActorInfo();
-	if (!Owner) return;
-	if (UWeaponHitBox* Hitbox = Owner->FindComponentByClass<UWeaponHitBox>())
+	if (!AbilityOwner) return;
+	if (UWeaponHitBox* Hitbox = AbilityOwner->FindComponentByClass<UWeaponHitBox>())
 	{
 		Hitbox->DisarmHitbox();
 	}
@@ -142,9 +148,8 @@ void URHComboGameplayAbility::OnHitWindowClose(FGameplayEventData Data)
 
 void URHComboGameplayAbility::PlayAttackSound(FGameplayEventData Data)
 {
-	AActor* Owner = GetAvatarActorFromActorInfo();
-	if (!Owner) return;
-	IRHCharacterActionInterface::Execute_PlayAttackSound(Owner, ActionData->AttackSound, ActionData->AttackAudioStartTime);
+	if (!AbilityOwner) return;
+	IRHCharacterActionInterface::Execute_PlayAttackSound(AbilityOwner, ActionData->AttackSound, ActionData->AttackAudioStartTime);
 }
 
 void URHComboGameplayAbility::HandleOnHit(FGameplayEventData Data)

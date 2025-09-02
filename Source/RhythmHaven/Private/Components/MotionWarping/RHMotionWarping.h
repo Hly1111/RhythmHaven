@@ -37,6 +37,7 @@ public:
 
 private:
 	FTimerHandle WarpingTimerHandle;
+	float WarpingElapsed = 0.f;
 
 	UFUNCTION()
 	void DoWarp(AActor* Target, float WarpInterpSpeed, float WarpInterpTime, const FVector& WarpLocation, const FRotator& WarpRotation);

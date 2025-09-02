@@ -29,4 +29,7 @@ public:
 	virtual void EnemyReceiveDamage_Implementation(FRHHitParams HitData, ACharacter* AttackInstigator) override;
 	virtual bool SetMovementMode_Implementation(EMovementMode Mode) override;
 	virtual bool IsMovingOnGround_Implementation() override;
+	virtual void EnemyAttackPlayer_Implementation() override;
+	virtual void PlayAttackSound_Implementation(USoundBase* SoundToPlay, float StartTime) override;
+	virtual bool IsHit_Implementation() override;
 };

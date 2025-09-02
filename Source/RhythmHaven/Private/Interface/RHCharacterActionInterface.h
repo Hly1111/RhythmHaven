@@ -50,4 +50,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
 	void ShakeCamera(TSubclassOf<class UCameraShakeBase> CameraShakeClass, float Scale);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Action")
+	void EnemyAttackPlayer();
 };
