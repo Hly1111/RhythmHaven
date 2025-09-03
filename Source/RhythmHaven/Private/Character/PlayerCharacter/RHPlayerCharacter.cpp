@@ -76,6 +76,11 @@ void ARHPlayerCharacter::Tick(float DeltaTime)
 		RotateForwardVectorToEnemy();
 
 		PreviousEnemy = TargetingComponent->GetCurrentEnemy();
+		if (!IsValid(PreviousEnemy))
+		{
+			bIsLockedOn = false;
+			return;
+		}
 		bResetLockOnRotation = false;
 #ifdef WITH_EDITOR
 		DrawDebugSphere(this->GetWorld(), PreviousEnemy->GetActorLocation(), 30, 12, FColor::White, 0, 0,0,1);
@@ -264,13 +269,13 @@ DrawDebugLine((World), (Start), (End), (bHit) ? FColor::Red : FColor::Green, fal
 
 void ARHPlayerCharacter::HandleLockOn()
 {
-	if (!bIsLockedOn)
+	TargetingComponent->FindClosestEnemy();
+	if (!bIsLockedOn && IsValid(TargetingComponent->GetCurrentEnemy()))
 	{
 		bIsLockedOn = true;
 		IRHCharacterDataInterface::Execute_ReceiveLockOn(GetMesh()->GetAnimInstance(), bIsLockedOn);
 		GetCharacterMovement()->MaxAcceleration = 400.f;
 		Execute_ChangeMovementType(this, EMovementType::Walk, 300);
-		TargetingComponent->FindClosestEnemy();
 	}
 	else
 	{

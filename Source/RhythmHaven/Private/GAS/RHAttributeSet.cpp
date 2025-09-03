@@ -16,6 +16,12 @@ void URHAttributeSet::PostGameplayEffectExecute(const FGameplayEffectModCallback
 		{
 			const float NewHealth = FMath::Clamp(GetHealth() - LocalDamage, 0.f, GetMaxHealth());
 			SetHealth(NewHealth);
+			OnHealthChanged.Broadcast(GetHealth(), GetMaxHealth());
 		}
+	}
+
+	if (Data.EvaluatedData.Attribute == GetHealthAttribute())
+	{
+		OnHealthChanged.Broadcast(GetHealth(), GetMaxHealth());
 	}
 }
