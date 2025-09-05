@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "Enum/LocomotionDirection.h"
 #include "Enum/MovementType.h"
 #include "UObject/Interface.h"
 #include "RHCharacterDataInterface.generated.h"
@@ -43,4 +44,7 @@ public:
 
 	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
 	bool IsHit();
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category="Character Data")
+	ELocomotionDirection GetDirection();
 };

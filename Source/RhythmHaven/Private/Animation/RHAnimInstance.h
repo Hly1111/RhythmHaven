@@ -122,4 +122,5 @@ private:
 	virtual bool ReceiveRightFootDistanceToGround_Implementation(float Distance) override;
 	virtual bool ReceiveJumpPressed_Implementation(bool Pressed) override;
 	virtual bool ReceiveLockOn_Implementation(bool LockOn) override;
+	virtual ELocomotionDirection GetDirection_Implementation() override;
 };

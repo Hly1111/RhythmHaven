@@ -140,6 +140,11 @@ void ARHPlayerCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 		{
 			EnhancedInputComponent->BindAction(LockOnSwitchAction,ETriggerEvent::Started,this, &ARHPlayerCharacter::HandleLockOnSwitch);
 		}
+
+		if (DodgeAction)
+		{
+			EnhancedInputComponent->BindAction(DodgeAction, ETriggerEvent::Started,this, &ARHPlayerCharacter::HandleDodge);
+		}
 	}
 }
 
@@ -257,15 +262,9 @@ void ARHPlayerCharacter::Landed(const FHitResult& Hit)
 
 void ARHPlayerCharacter::HandleMeleeAttack()
 {
+	GEngine->AddOnScreenDebugMessage(-1,3,FColor::Red,"Dodge");
 	ASC->TryActivateCombo(GetMeleeAttackTag());
 }
-
-#if WITH_EDITOR
-#define RH_DRAW_FOOT_LINE(World, Start, End, bHit, Duration)\
-DrawDebugLine((World), (Start), (End), (bHit) ? FColor::Red : FColor::Green, false, (Duration), 0, 0.15f);
-#else
-#define RH_DRAW_FOOT_LINE(World, Start, End, bHit, Duration)
-#endif
 
 void ARHPlayerCharacter::HandleLockOn()
 {
@@ -296,6 +295,18 @@ void ARHPlayerCharacter::HandleLockOnSwitch()
 	if (!bIsLockedOn) return;
 	TargetingComponent->FindClosestEnemy();
 }
+
+void ARHPlayerCharacter::HandleDodge()
+{
+	ASC->TryActivateAbilitiesByTag(FGameplayTagContainer(GetDodgeTag()));
+}
+
+#if WITH_EDITOR
+#define RH_DRAW_FOOT_LINE(World, Start, End, bHit, Duration)\
+DrawDebugLine((World), (Start), (End), (bHit) ? FColor::Red : FColor::Green, false, (Duration), 0, 0.15f);
+#else
+#define RH_DRAW_FOOT_LINE(World, Start, End, bHit, Duration)
+#endif
 
 void ARHPlayerCharacter::UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const
 {
@@ -404,6 +415,11 @@ void ARHPlayerCharacter::ShakeCamera_Implementation(TSubclassOf<UCameraShakeBase
 
 void ARHPlayerCharacter::EnemyReceiveDamage_Implementation(FRHHitParams HitData, ACharacter* AttackInstigator)
 {
+	if (ASC->HasMatchingGameplayTag(UGameplayTagsManager::Get().RequestGameplayTag(FName("Attack.Dodge"))))
+	{
+		return;
+	}
+	
 	//伤害Effect
 	UAbilitySystemComponent* SourceASC = UAbilitySystemBlueprintLibrary::GetAbilitySystemComponent(AttackInstigator);
 	if (!SourceASC) return;
@@ -425,9 +441,19 @@ bool ARHPlayerCharacter::IsMovingOnGround_Implementation()
 	return GetCharacterMovement()->IsMovingOnGround();
 }
 
+ELocomotionDirection ARHPlayerCharacter::GetDirection_Implementation()
+{
+	return Execute_GetDirection(GetMesh()->GetAnimInstance());
+}
+
 FGameplayTag ARHPlayerCharacter::GetMeleeAttackTag()
 {
 	return UGameplayTagsManager::Get().RequestGameplayTag(FName("Attack.MeleeAttack"));
+}
+
+FGameplayTag ARHPlayerCharacter::GetDodgeTag()
+{
+	return UGameplayTagsManager::Get().RequestGameplayTag(FName("Attack.Dodge"));
 }
 
 

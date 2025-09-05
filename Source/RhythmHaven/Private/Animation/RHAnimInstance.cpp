@@ -89,3 +89,8 @@ bool URHAnimInstance::ReceiveLockOn_Implementation(bool LockOn)
 	bIsLockedOn = LockOn;
 	return true;
 }
+
+ELocomotionDirection URHAnimInstance::GetDirection_Implementation()
+{
+	return GetVelocityDirection();
+}

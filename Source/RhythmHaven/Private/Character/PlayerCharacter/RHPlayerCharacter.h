@@ -91,6 +91,11 @@ private:
 	TObjectPtr<UInputAction> MeleeAttackAction;
 
 	void HandleMeleeAttack();
+
+	UPROPERTY(EditDefaultsOnly, Category = "Enhanced Input")
+	TObjectPtr<UInputAction> DodgeAction;
+
+	void HandleDodge();
 	
 	/*Foot Step*/
 	void UpdateFootStep(FName SocketName,  USoundBase* FootSound, bool& bIsStepPlayed, float& DistanceToGround) const;
@@ -117,7 +122,9 @@ private:
 	virtual void ShakeCamera_Implementation(TSubclassOf<class UCameraShakeBase> CameraShakeClass, float Scale) override;
 	virtual void EnemyReceiveDamage_Implementation(FRHHitParams HitData, ACharacter* AttackInstigator) override;
 	virtual bool IsMovingOnGround_Implementation() override;
+	virtual ELocomotionDirection GetDirection_Implementation() override;
 
 	/* TAGS */
 	static FGameplayTag GetMeleeAttackTag();
+	static FGameplayTag GetDodgeTag();
 };
